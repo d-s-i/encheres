@@ -1,0 +1,28 @@
+{
+  "id": "APP-001",
+  "title": "Étudier un lot par chat et retrouver son tableau d'analyse sauvegardé",
+  "status": "ready_for_specification",
+  "current_role": "specifier",
+  "current_feature": null,
+  "roles": {
+    "init-task": "completed",
+    "specifier": "not_run",
+    "coder": "not_run",
+    "cleaner": "not_run",
+    "architect": "not_run",
+    "hardener": "not_run",
+    "qa": "not_run"
+  },
+  "checks": {
+    "gherkin": "not_run",
+    "crap": "not_run",
+    "dry": "not_run",
+    "mutation": "not_run",
+    "qa": "not_run"
+  },
+  "open_questions": [
+    "Souhaitez-vous également une vue globale de tous les lots en plus d'un tableau par lot ?"
+  ],
+  "features": {},
+  "updated_at": "2026-11-01T23:54:35Z"
+}

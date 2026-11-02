@@ -1,0 +1,30 @@
+{
+  "id": "PRICE-001",
+  "title": "Comparer les prix de montres équivalentes sur cinq ans et sur Chrono24",
+  "status": "ready_for_specification",
+  "current_role": "specifier",
+  "current_feature": null,
+  "roles": {
+    "init-task": "completed",
+    "specifier": "not_run",
+    "coder": "not_run",
+    "cleaner": "not_run",
+    "architect": "not_run",
+    "hardener": "not_run",
+    "qa": "not_run"
+  },
+  "checks": {
+    "gherkin": "not_run",
+    "crap": "not_run",
+    "dry": "not_run",
+    "mutation": "not_run",
+    "qa": "not_run"
+  },
+  "open_questions": [
+    "La couverture des adjudications Crédit municipal sur cinq ans et l'accès aux prix de ventes réalisées Chrono24 sont-ils vérifiables ?",
+    "Vérifier les taux et conditions applicables à chaque vente historique pour calculer le coût d'achat en ligne.",
+    "Si les prix de ventes réalisées Chrono24 sont indisponibles, l'absence de moyenne convient-elle ou faut-il une autre source de ventes réalisées ?"
+  ],
+  "features": {},
+  "updated_at": "2026-11-01T23:54:35Z"
+}

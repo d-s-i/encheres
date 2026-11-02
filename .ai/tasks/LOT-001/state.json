@@ -1,0 +1,71 @@
+{
+  "id": "LOT-001",
+  "title": "Retrouver et caractériser une montre à partir d'un lot d'enchères Crédit municipal",
+  "status": "qa_passed_mutation_stale",
+  "current_role": null,
+  "current_feature": null,
+  "roles": {
+    "init-task": "completed",
+    "specifier": "completed",
+    "coder": "completed",
+    "cleaner": "completed",
+    "architect": "completed",
+    "hardener": "completed",
+    "qa": "completed"
+  },
+  "checks": {
+    "gherkin": "passed",
+    "crap": "passed",
+    "dry": "passed",
+    "mutation": "stale_after_qa_fix",
+    "qa": "passed"
+  },
+  "open_questions": [
+    "Quelles restrictions d'accès s'appliquent aux catalogues ou PDF de ventes futures ?",
+    "Les autres ventes auront-elles des PDF dont la structure exige un traitement particulier ?"
+  ],
+  "features": {
+    "LOT-001-F01": {
+      "status": "completed",
+      "file": "features/identifier-montres.feature"
+    }
+  },
+  "gherkin_validation": {
+    "parse": "passed",
+    "dry_review": "reviewed_8_advisory_findings"
+  },
+  "crap_analysis": {
+    "report": ".metrics/crap.edn",
+    "coverage": "coverage/lcov.info",
+    "status": "passed",
+    "worst_function": "pageCount",
+    "worst_score": 6.0
+  },
+  "mutation_report": {
+    "status": "stale_after_qa_fix",
+    "snapshots": ".metrics/mutate/",
+    "total": 117,
+    "killed": 95,
+    "survived": 22,
+    "uncovered": 0,
+    "timeouts": 0,
+    "score_percent": 81.2,
+    "classification": "checks/hardener.md"
+  },
+  "human_approval": {
+    "scope": "functional_behavior",
+    "status": "approved",
+    "note": "Validation utilisateur de LOT-001 après QA réussie ; le rapport de mutation demeure périmé suite au correctif QA."
+  },
+  "mutation_scan": {
+    "status": "stale_after_qa_fix",
+    "sites_by_file": {
+      "src/lots.mjs": 55,
+      "src/pdf-lots.mjs": 34,
+      "src/watch.mjs": 14,
+      "bin/etudier-lots.mjs": 14,
+      "scripts/generate-acceptance.mjs": 0
+    }
+  },
+  "updated_at": "2026-11-02T02:35:37Z"
+}

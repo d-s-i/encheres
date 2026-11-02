@@ -1,0 +1,212 @@
+{
+  "task": "LOT-001",
+  "feature": "LOT-001-F01",
+  "started_at": "2026-11-02T02:32:03.784Z",
+  "interface": "node bin/etudier-lots.mjs",
+  "preflight": [
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+      "status": 200,
+      "sha256": "6c9d3de074c02f108212049e6db60b9e0f2258c1560543eeeee1adfebf9f2213",
+      "verified": [
+        "MONTRES DE PRESTIGE",
+        "Lot n°318",
+        "Lot n°323"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+      "status": 200,
+      "sha256": "37d5b4e4b47c827bbe33730b9924f0c9ea4fd4f56ff46d5663f63cc6aef3f897",
+      "verified": [
+        "Lot n°318",
+        "CV2010-3",
+        "Sans écrin ni papiers",
+        "Adjugé à 1 500",
+        "600 / 800"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/",
+      "status": 200,
+      "sha256": "78bc730ad8e229c4cbc46978ac8ff6894f63c1dd48ead8615e3a14d4fc8495c4",
+      "verified": [
+        "Lot n°323",
+        "CHOPARD",
+        "8954",
+        "surboîte",
+        "Adjugé à 3 600"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/en/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/260620000/",
+      "status": 200,
+      "sha256": "6e0f944a3f639f34bf526c7bb37a014036e2178f4d1f2d1e8b567f53a8bf716c",
+      "verified": [
+        "Lot n°262",
+        "Seamaster Professionnal"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/en/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/260620000/omega-seamaster-professionnal-montre-bracelet-d/",
+      "status": 200,
+      "sha256": "c3481ff7438137bb7ba30c1d1af97b3c46e626fb05020a7eb12b4e6655a9b539",
+      "verified": [
+        "Lot n°262",
+        "89415867",
+        "Boîte",
+        "Bracelet en acier"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=2",
+      "status": 200,
+      "sha256": "33a9b1cbcb9516e26ae054776e43404c40c21fa4244a413072000dfafed4b801",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=3",
+      "status": 200,
+      "sha256": "6cb0302cd874dca85ffd64d575f9d7e9adb8f39216fb0d3ebeceb6cabcb9959e",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=4",
+      "status": 200,
+      "sha256": "610dad7f2ad2db3ab7f3935da974a06a490be5907b9b3cc04c4cc38739771a58",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=5",
+      "status": 200,
+      "sha256": "de78e0576f30484797220d4220b0ce1e57706126fe7beec314eeab0b951f7103",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=6",
+      "status": 200,
+      "sha256": "21071ac53ec8da6fc9a4522474a9bb45c3f91c955cf61381b769b773de0f062d",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/?_paged=7",
+      "status": 200,
+      "sha256": "c7d5defc0f59623e7b419f8b8143f0a4f245f64f5803ed599f98f86e670733c8",
+      "verified": [
+        "card--lot"
+      ]
+    },
+    {
+      "pdf": "/tmp/lot001-qa-XiAlO0/vente-318.pdf",
+      "size": 770036,
+      "sha256": "5f7bfe8d0cec620b0445f0b484c039947f59a159b73f69fe64730559eeb7ac76",
+      "verified": [
+        "lot 318",
+        "Carrera",
+        "CV2010-3",
+        "bracelet caoutchouc",
+        "sans écrin"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "LOT-001-S01",
+      "name": "Un lot depuis la vente 2021",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"318\"",
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera\n- Référence du modèle : CV2010-3\n- Bracelet : caoutchouc\n- Boîte / écrin : absent\n- Adjudication : 1 500 € hors frais\n- Estimation : 600 à 800 €\n- Source : https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/\n- Description d'origine : TAG HEUER, Carrera. Montre d’homme ronde en acier avec chronographe. Lunette graduation tachymètre. Boîtier fond transparent. Cadran noir avec index bâtons appliqués, trois compteurs pour l’indication des heures, des minutes et des secondes, date à guichet et minuterie chemin de fer. Mouvement mécanique à remontage automatique. Calibre 16. Bracelet caoutchouc avec fermoir déployant siglé. Diamètre : 41,5 mm. Référence : CV2010-3. N° de série : EWL8719. Sans écrin ni papiers.\n\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "LOT-001-S02",
+      "name": "Deux lots distincts",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"318\" \"323\"",
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera\n- Référence du modèle : CV2010-3\n- Bracelet : caoutchouc\n- Boîte / écrin : absent\n- Adjudication : 1 500 € hors frais\n- Estimation : 600 à 800 €\n- Source : https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/\n- Description d'origine : TAG HEUER, Carrera. Montre d’homme ronde en acier avec chronographe. Lunette graduation tachymètre. Boîtier fond transparent. Cadran noir avec index bâtons appliqués, trois compteurs pour l’indication des heures, des minutes et des secondes, date à guichet et minuterie chemin de fer. Mouvement mécanique à remontage automatique. Calibre 16. Bracelet caoutchouc avec fermoir déployant siglé. Diamètre : 41,5 mm. Référence : CV2010-3. N° de série : EWL8719. Sans écrin ni papiers.\n\n## Lot 323 — CHOPARD Alfa Romeo\n- Référence du modèle : 8954\n- Bracelet : caoutchouc\n- Boîte / écrin : présent\n- Adjudication : 3 600 € hors frais\n- Estimation : 1 500 à 2 500 €\n- Source : https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/\n- Description d'origine : CHOPARD, Alfa Romeo. Montre d’homme en acier avec chronographe et fonction GMT. Lunette graduation 24 heures. Boîtier fond gravé du logo Alfa Romeo. Cadran noir avec index bâtons et aiguilles luminescentes, trois compteurs pour l’indication des heures, des minutes et des secondes, aiguille chemin de fer pour la fonction GMT second fuseau horaire, minuterie 1/5e de seconde et échelle tachymètre. Mouvement mécanique à remontage automatique. Bracelet en caoutchouc avec fermoir double déployant en acier signé. Référence : 8954. N° de série : 1102847. Série limitée 419/750. Écrin, surboîte, compteur, livret worldwide service, certificat d'origine et carte de garantie plastifiée, livret 1000 Miglia Gmt Alfa Romeo.\n\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "LOT-001-S03",
+      "name": "PDF de vente",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--pdf\" \"/tmp/lot001-qa-XiAlO0/vente-318.pdf\" \"318\"",
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera\n- Référence du modèle : CV2010-3\n- Bracelet : caoutchouc\n- Boîte / écrin : absent\n- Adjudication : 1 500 € hors frais\n- Estimation : 600 à 800 €\n- Source : /tmp/lot001-qa-XiAlO0/vente-318.pdf\n- Description d'origine : TAG HEUER, Carrera. Montre d’homme ronde en acier avec chronographe. Lunette graduation tachymètre. Boîtier fond transparent. Cadran noir avec index bâtons appliqués, trois compteurs pour l’indication des heures, des minutes et des secondes, date à guichet et minuterie chemin de fer. Mouvement mécanique à remontage automatique. Calibre 16. Bracelet caoutchouc avec fermoir déployant siglé. Diamètre : 41,5 mm. Référence : CV2010-3. N° de série : EWL8719. Sans écrin ni papiers.\n\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "LOT-001-S04",
+      "name": "Lot absent",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"99999\"",
+        "exitCode": 0,
+        "stdout": "Lot 99999 : aucun lot 99999 trouvé dans cette vente ou ce PDF.\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "LOT-001-S05",
+      "name": "PDF illisible",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--pdf\" \"/tmp/lot001-qa-XiAlO0/vente-illisible.pdf\" \"318\"",
+        "exitCode": 1,
+        "stdout": "",
+        "stderr": "PDF invalide ou illisible : fournir un PDF lisible de la vente.\n"
+      }
+    },
+    {
+      "id": "LOT-001-S06",
+      "name": "Référence absente",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/etudier-lots.mjs\" \"--url\" \"https://www.creditmunicipal.fr/en/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/260620000/\" \"262\"",
+        "exitCode": 0,
+        "stdout": "## Lot 262 — OMEGA Seamaster Professionnal\n- Référence du modèle : non renseignée\n- Bracelet : acier\n- Boîte / écrin : présent\n- Adjudication : 3 600 € hors frais\n- Estimation : 1 500 à 2 000 €\n- Source : https://www.creditmunicipal.fr/en/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/260620000/omega-seamaster-professionnal-montre-bracelet-d/\n- Description d'origine : OMEGA, Seamaster Professionnal. Montre bracelet de forme ronde de plongée. Boîtier en acier signé et numéroté 89415867. Cadran noir à index et aiguilles luminescentes. Mouvement mécanique à remontage automatique signé. Calibre Co-Axial. Diamètre : 42 mm environ. Bracelet en acier avec boucle déployante signée. Boîte, surboîte, notice, maillons supplémentaires, sans papiers.\n\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "status": "PASS",
+  "completed_at": "2026-11-02T02:32:53.628Z",
+  "cleanup": "Temporary PDFs deleted",
+  "run_command": "node .ai/tasks/LOT-001/qa/scripts/run.mjs",
+  "reproduced_failure": {
+    "id": "LOT-001-S03",
+    "classification": "product_defect",
+    "expected": "La description issue du PDF contient uniquement la description du lot",
+    "observed": "La description incluait la navigation et le bandeau cookies imprimés depuis le site",
+    "fix": "Arrêt de l'extraction avant la navigation ou le bandeau cookies dans src/pdf-lots.mjs ; test de régression dans test/lots.test.mjs",
+    "after_fix": "PASS lors de la nouvelle exécution de S03 et des six scénarios"
+  },
+  "regressions": {
+    "pnpm test": "PASS: 29 tests",
+    "pnpm acceptance": "PASS: 6 scénarios",
+    "parse-gherkin + check-gherkin-dry": "PASS: analyse structurelle, 8 remarques consultatives",
+    "node --check": "PASS: script QA et modules modifiés",
+    "crap with LCOV": "PASS: maximum 6, rapport .metrics/crap.edn courant",
+    "dryer": "PASS: 0 candidat, rapport .metrics/dry.edn courant",
+    "typecheck_build": "NOT_CONFIGURED",
+    "source_mutation": "NOT_RUN_BY_QA; snapshots du hardener désormais périmés pour src/pdf-lots.mjs"
+  }
+}
