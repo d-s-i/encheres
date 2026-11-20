@@ -1,4 +1,4 @@
-import {createHash,timingSafeEqual} from 'node:crypto';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {fileStudyStore} from './study-store.mjs';
 import {studyLots} from './lots.mjs';
@@ -82,20 +82,9 @@ async function dispatch(req,res,path,options){
  if(req.method==='POST')return postRoute(path,req,res,options);
  return notFound(res);
 }
-function authorized(req,{username,password}){
- const value=req.headers.authorization;
- if(typeof value!=='string'||!value.startsWith('Basic ')||value.length>2048)return false;
- try{
-  const candidate=Buffer.from(value.slice(6),'base64');
-  const expected=Buffer.from(`${username}:${password}`);
-  return candidate.length===expected.length&&timingSafeEqual(candidate,expected);
- }catch{return false}
-}
-export function createApplication({dataDir,store=fileStudyStore(dataDir),study=studyLots,compare=compareWatch,images=readAppImages,asOf=()=>new Date().toISOString().slice(0,10),auth}={}){
- if(auth&&(!auth.username||!auth.password))throw Error('Identifiants APP_USER et APP_PASSWORD requis');
+export function createApplication({dataDir,store=fileStudyStore(dataDir),study=studyLots,compare=compareWatch,images=readAppImages,asOf=()=>new Date().toISOString().slice(0,10)}={}){
  const options={store,study,compare,images,asOf,pending:new Set()};
  return async function handler(req,res){
-  if(auth&&!authorized(req,auth))return send(res,401,'Authentification requise',{'www-authenticate':'Basic realm="Études montres", charset="UTF-8"'});
   const path=new URL(req.url,'http://localhost').pathname;
   try{await dispatch(req,res,path,options)}
   catch(e){console.error(e);send(res,500,layout('<h1>Étude non disponible</h1>'))}

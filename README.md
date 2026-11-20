@@ -42,8 +42,8 @@ L'application locale (`pnpm app:start`) continue de sauvegarder dans `data/`. Su
 
 1. Importer le dépôt Git dans Vercel (racine du projet ; Vercel détecte `pnpm-lock.yaml`). **Attention : les fichiers non suivis par Git ne seront pas déployés.** Pas de framework, pas de commande de build nécessaire.
 2. Dans **Storage → Create Storage → Blob**, créer un store **Private** et le connecter au projet, environnement Production (et Preview si utilisé). La connexion fournit les identifiants Blob à la fonction.
-3. Dans **Settings → Environment Variables**, définir `APP_USER` et un `APP_PASSWORD` long et unique (obligatoires : le déploiement refuse de démarrer sans eux). Ajouter `PCKT_API_KEY` si la comparaison Chrono24 est souhaitée. Ne jamais versionner `.env` ni les fichiers de `data/`.
-4. Déployer, ouvrir l'URL HTTPS Vercel et saisir les identifiants lorsque le navigateur les demande. Même compte depuis le téléphone et l'ordinateur. Les blobs restent privés : l'accès aux études et aux actions de création/suppression passe par l'authentification HTTP de l'application.
+3. Dans **Settings → Environment Variables**, ajouter `PCKT_API_KEY` en type **Secret** si la comparaison Chrono24 est souhaitée. Ne jamais versionner `.env` ni les fichiers de `data/`.
+4. Déployer et ouvrir l'URL HTTPS Vercel depuis le téléphone ou l'ordinateur. Les blobs sont privés côté stockage, mais **l'application est publique** : toute personne ayant l'URL peut voir les études, lancer une analyse (qui consomme le quota Packet) et supprimer des lignes. Éviter d'y enregistrer des données confidentielles.
 
 Vercel Hobby et Blob Hobby ont des quotas gratuits ; chaque ouverture de la grille lit les études stockées, donc surveiller les quotas si la collection grandit. Les requêtes d'analyse dépendent toujours de la disponibilité des sites sources et du quota Packet. Sauvegarder les JSON périodiquement si les études comptent : le plan gratuit n'est pas une sauvegarde. Les pages statiques publiques ne contiennent pas les études ni la clé API.
 

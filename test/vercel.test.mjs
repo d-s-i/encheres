@@ -22,18 +22,18 @@ test('private blob store lists pages, reads, rejects duplicates and deletes',asy
  assert.ok(calls.some(([name])=>name==='del'));
 });
 
-test('HTTP Basic auth protects all routes, HTTPS same-origin POST is accepted',async()=>{
+test('Vercel-style parsed POST body works without auth; cross-origin POST remains forbidden',async()=>{
  const store={list:async()=>[],get:async()=>null,has:async()=>false,put:async()=>true,delete:async()=>false};
- const handler=createApplication({store,auth:{username:'moi',password:'secret'},study:async()=>({watches:[],missing:[1]})});
+ const handler=createApplication({store,study:async()=>({watches:[],missing:[1]})});
  // Vercel supplies a pre-parsed request.body; the raw request stream is not required.
  const server=await new Promise(resolve=>{const s=createServer((req,res)=>{if(req.url==='/studies')req.body={saleUrl:'https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/',number:'1'};handler(req,res)});s.listen(0,'127.0.0.1',()=>resolve(s))});
- const url=`http://127.0.0.1:${server.address().port}`,auth='Basic '+Buffer.from('moi:secret').toString('base64');
+ const url=`http://127.0.0.1:${server.address().port}`;
  try{
-  for(const path of ['/','/app.css','/studies/'+id]){const response=await fetch(url+path);assert.equal(response.status,401);assert.match(response.headers.get('www-authenticate'),/Basic/)}
-  assert.equal((await fetch(url,{headers:{Authorization:'Basic '+Buffer.from('moi:wrong').toString('base64')}})).status,401);
-  assert.equal((await fetch(url,{headers:{Authorization:auth}})).status,200);
+  assert.equal((await fetch(url)).status,200);
+  assert.equal((await fetch(url+'/app.css')).status,200);
+  assert.equal((await fetch(url+'/studies/'+id)).status,404);
   const body=new URLSearchParams({saleUrl:'https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/',number:'1'});
-  const headers={Authorization:auth,Origin:`https://127.0.0.1:${server.address().port}`,'Content-Type':'application/x-www-form-urlencoded'};
+  const headers={Origin:`https://127.0.0.1:${server.address().port}`,'Content-Type':'application/x-www-form-urlencoded'};
   assert.equal((await fetch(url+'/studies',{method:'POST',headers,body})).status,422);
   assert.equal((await fetch(url+'/studies',{method:'POST',headers:{...headers,Origin:'https://attacker.example'},body})).status,403);
  }finally{await new Promise(resolve=>server.close(resolve))}
