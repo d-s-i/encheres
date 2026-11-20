@@ -1,0 +1,1003 @@
+{
+  "task": "PRICE-001",
+  "started_at": "2026-11-16T00:08:37.838Z",
+  "interface": "node bin/comparer-prix.mjs --url <vente> --as-of <date> <lot>",
+  "preflight": {
+    "captured_at": "2026-11-15T23:53:38.800Z",
+    "verified": [
+      {
+        "name": "sale2021",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+        "sha256": "bc0dcac33b6e5727a87d2df94d3856a866bd45d40cdd06ca97687b203f402cd3",
+        "bytes": 260960
+      },
+      {
+        "name": "lot318",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+        "sha256": "c7d6032b95bc438511d375a008c76de3064b9e2c5eb1ae6e3b33471531457421",
+        "bytes": 183649
+      },
+      {
+        "name": "lot323",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/",
+        "sha256": "cadf62cfe3cfe050a5e83fa4068e496ce69a1a7aabb441938dc0d54bb84f3be1",
+        "bytes": 205236
+      },
+      {
+        "name": "lot288",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+        "sha256": "20df5890b30788a8dd36ca440ac8de9ffa5ee2d9f3cdc816d54d185158e0f46f",
+        "bytes": 195195
+      },
+      {
+        "name": "lot246",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+        "sha256": "b4dcc6942f6ff60cf0598c48ef9d014e3d7906948ae70b18f5ead3899463927c",
+        "bytes": 194784
+      },
+      {
+        "name": "lot368",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+        "sha256": "cb86e84ff0ef3e7db8d046c7ae11a29ae9212e99b59bf7065e239ba0ef6c1e0f",
+        "bytes": 191394
+      },
+      {
+        "name": "sale2026",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+        "sha256": "2a504d760d6fc23047681be30049728e7e3f54175092a4bebe08b5f2728b4b37",
+        "bytes": 250472
+      },
+      {
+        "name": "sale2026page2",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+        "sha256": "11eff93fc8136e4b77ba33f06298565833914cbf90542cbdfb66b0c79678c1f5",
+        "bytes": 200803
+      },
+      {
+        "name": "sale2026page3",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=3",
+        "sha256": "21b5c43e24387d6d6b3fd6bf38aa5ddfb875c98bb0ca71ca0a8d5ccf864230a6",
+        "bytes": 199552
+      },
+      {
+        "name": "lot268",
+        "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+        "sha256": "0e227f87b8cb45047222e4f5f3b55bfaded9ab0a280f97e8cd01bbde447ac23c",
+        "bytes": 194916
+      },
+      {
+        "name": "pdf2024",
+        "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+        "sha256": "981bdf022ce3fe6ead32e7bc45445a003c1a528354205f8b7058a8e9c2831147",
+        "bytes": 2980876
+      },
+      {
+        "name": "pdf2026",
+        "url": "https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf",
+        "sha256": "b7709fe7d0003c302d3d100d681f031789b846b0a7507693cf1a628aae3d2d24",
+        "bytes": 2389986
+      }
+    ],
+    "oracle": "Public sale and fee documents independently inspected with Cheerio and PDF.js; synthetic Packet cases controlled per written QA procedure."
+  },
+  "scenarios": [
+    {
+      "id": "QA-PRICE-001-S01",
+      "feature": "PRICE-001-F01",
+      "scenario": "S01",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "auto",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 750 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id45070719.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 1 750 € (1 annonce).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=45070719&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S02",
+      "feature": "PRICE-001-F01",
+      "scenario": "S02",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "auto",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 750 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id45070719.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 1 750 € (1 annonce).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=45070719&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S03",
+      "feature": "PRICE-001-F01",
+      "scenario": "S03",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "auto",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 750 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id45070719.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 1 750 € (1 annonce).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=45070719&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S04",
+      "feature": "PRICE-001-F01",
+      "scenario": "S04",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "rank",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 500 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id2.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\n- 1 650 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id3.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\n- 1 800 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id4.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des prix affichés : 1 650 € (3 annonces).\nRecherche Chrono24 : 3 pages, 8 annonces analysées sur 8 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=5&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=6&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=4&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=1&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S05",
+      "feature": "PRICE-001-F01",
+      "scenario": "S05",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "auto",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 750 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id45070719.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 1 750 € (1 annonce).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=45070719&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S06",
+      "feature": "PRICE-001-F01",
+      "scenario": "S06",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"323\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 323,
+          "mode": "auto",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 323 — CHOPARD Alfa Romeo (8954)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\nMoyenne des coûts d'achat en ligne vérifiés : indisponible (0 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\nMoyenne des prix affichés : indisponible (0 annonce).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : indisponible : moyenne Chrono24 indisponible.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=CHOPARD+Alfa+Romeo&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=CHOPARD+Alfa+Romeo&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S07",
+      "feature": "PRICE-001-F01",
+      "scenario": "S07",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "blocked",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\nSource non vérifiable (accès empêché) : Packet inaccessible (426).\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non vérifiable : accès à Chrono24 impossible.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 426
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S13",
+      "feature": "PRICE-001-F01",
+      "scenario": "S13",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "sample",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 000 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id3.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\n- 1 300 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id2.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\n- 1 600 € hors port · vendeur FR · CV2010 · état : Très bon · https://www.chrono24.fr/tagheuer/carrera--id1.htm · différences : reference : CV2010 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des prix affichés : 1 300 € (3 annonces).\nRecherche Chrono24 : 3 pages, 6 annonces analysées sur 10 résultats, triés par pertinence ; seules les trois premières pages ont été analysées : ce ne sont pas nécessairement les offres les moins chères de tout Chrono24.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non applicable : vente ciblée déjà passée.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=1&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S14",
+      "feature": "PRICE-001-F01",
+      "scenario": "S14",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/\" \"--as-of\" \"2026-11-11\" \"318\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2021",
+          "lot": 318,
+          "mode": "empty",
+          "date": "2026-11-11"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 318 — TAG HEUER Carrera (CV2010-3)\nDate d'analyse : 2026-11-11\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 288 · CV2010-4 · adjudication 1 900 € hors frais · coût en ligne 2 242 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CV2010-4 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc)\n- 2022-06-11 · lot 368 · CV2010-2 · adjudication 1 650 € hors frais · coût en ligne non vérifié · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/ · différences : reference : CV2010-2 (lot : CV2010-3) ; bracelet : acier (lot : caoutchouc) ; box : présent (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 2 242 € (1 vente avec frais vérifiés, échantillon partiel).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\nMoyenne des prix affichés : indisponible (0 annonce dans l’échantillon).\nRecherche Chrono24 : 3 pages, 6 annonces analysées sur 10 résultats, triés par pertinence ; seules les trois premières pages ont été analysées : ce ne sont pas nécessairement les offres les moins chères de tout Chrono24.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : indisponible : aucune annonce admissible dans l’échantillon des trois premières pages ; marché entier non vérifié.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Carrera&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Carrera&limit=50&page=3&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S08",
+      "feature": "PRICE-001-F02",
+      "scenario": "S08",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "auto",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 4 100 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48909624.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\n- 4 590 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48704080.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 4 345 € (2 annonces).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : 3 645,13 € hors frais Crédit Municipal.\nBase : moyenne partielle Chrono24 des prix demandés hors port 4 345 € (2 annonces françaises).\nFrais de la vente ciblée : 18% TTC acheteur + 1.2% TTC live, sur l'adjudication · https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf.\nSeuil théorique : respecter également le pas d'enchère de la vente.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48909624&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48704080&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S09",
+      "feature": "PRICE-001-F02",
+      "scenario": "S09",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "auto",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 4 100 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48909624.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\n- 4 590 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48704080.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 4 345 € (2 annonces).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : 3 645,13 € hors frais Crédit Municipal.\nBase : moyenne partielle Chrono24 des prix demandés hors port 4 345 € (2 annonces françaises).\nFrais de la vente ciblée : 18% TTC acheteur + 1.2% TTC live, sur l'adjudication · https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf.\nSeuil théorique : respecter également le pas d'enchère de la vente.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48909624&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48704080&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S10",
+      "feature": "PRICE-001-F02",
+      "scenario": "S10",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "no_fees",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 4 100 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48909624.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\n- 4 590 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id48704080.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\nMoyenne partielle des prix affichés : 4 345 € (2 annonces).\nRecherche Chrono24 : 1 page, 2 annonces analysées sur 2 résultats, triés par pertinence ; tous les résultats de cette recherche ont été parcourus.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : indisponible : frais de la vente ciblée non vérifiés.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48909624&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=48704080&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S11",
+      "feature": "PRICE-001-F02",
+      "scenario": "S11",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "empty",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\nMoyenne des prix affichés : indisponible (0 annonce dans l’échantillon).\nRecherche Chrono24 : 3 pages, 6 annonces analysées sur 10 résultats, triés par pertinence ; seules les trois premières pages ont été analysées : ce ne sont pas nécessairement les offres les moins chères de tout Chrono24.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : indisponible : aucune annonce admissible dans l’échantillon des trois premières pages ; marché entier non vérifié.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=3&currency=EUR&language=fr_FR",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S15",
+      "feature": "PRICE-001-F02",
+      "scenario": "S15",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "sample",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\n- 1 000 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id3.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\n- 1 300 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id2.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\n- 1 600 € hors port · vendeur FR · CAW2111 · état : Très bon · https://www.chrono24.fr/tagheuer/monaco--id1.htm · différences : bracelet : acier (lot : cuir) ; box : présent (lot : absent)\nMoyenne des prix affichés : 1 300 € (3 annonces).\nRecherche Chrono24 : 3 pages, 6 annonces analysées sur 10 résultats, triés par pertinence ; seules les trois premières pages ont été analysées : ce ne sont pas nécessairement les offres les moins chères de tout Chrono24.\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : 1 090,60 € hors frais Crédit Municipal.\nBase : moyenne Chrono24 des prix demandés hors port 1 300 € (3 annonces françaises, échantillon des trois premières pages seulement).\nFrais de la vente ciblée : 18% TTC acheteur + 1.2% TTC live, sur l'adjudication · https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf.\nSeuil théorique : respecter également le pas d'enchère de la vente.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=3&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=2&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/product?id=1&currency=EUR&language=fr_FR",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "id": "QA-PRICE-001-S12",
+      "feature": "PRICE-001-F02",
+      "scenario": "S12",
+      "status": "PASS",
+      "evidence": {
+        "command": "node \"bin/comparer-prix.mjs\" \"--url\" \"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\" \"--as-of\" \"2026-11-15\" \"268\"",
+        "env": "QA transport replay on public HTTPS routes; no application injection or production override",
+        "initial": {
+          "sale": "2026",
+          "lot": 268,
+          "mode": "blocked",
+          "date": "2026-11-15"
+        },
+        "exitCode": 0,
+        "stdout": "## Lot 268 — TAG HEUER Monaco (CAW2111)\nDate d'analyse : 2026-11-15\n### Crédit Municipal — adjudications comparables des cinq dernières années\n- 2024-06-15 · lot 246 · CW2113-0 · adjudication 3 700 € hors frais · coût en ligne 4 366 € · https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/ · frais : 18% + 0% live (https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf) · différences : reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent)\nMoyenne des coûts d'achat en ligne vérifiés : 4 366 € (1 vente avec frais vérifiés).\n### Chrono24 — prix demandés, vendeurs en France, hors frais de port\nSource non vérifiable (accès empêché) : Packet inaccessible (426).\n### Plafond d'enchère théorique — hors frais Crédit Municipal\nPrix à ne pas dépasser : non vérifiable : accès à Chrono24 impossible.\n",
+        "stderr": "",
+        "requests": [
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all",
+            "status": 200
+          },
+          {
+            "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+            "status": 200
+          },
+          {
+            "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+            "status": 200
+          },
+          {
+            "url": "https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR",
+            "status": 426
+          }
+        ]
+      }
+    }
+  ],
+  "status": "PASS",
+  "completed_at": "2026-11-16T00:09:45.251Z",
+  "cleanup": "Temporary replay config and request logs deleted; no transactions or sales changed"
+}

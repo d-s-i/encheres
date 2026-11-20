@@ -45,6 +45,29 @@ test('English euro-before-number estimates do not become zero', async () => {
   assert.deepEqual(result.watches[0].estimation, [1500, 2000]);
 });
 
+test('a model reference without a colon is extracted from a watch description', () => {
+  const watch = extractWatch({ number: 268, title: 'TAG HEUER, Monaco.', description: 'TAG HEUER, Monaco. Référence CAW2111. Boîtier acier. Bracelet en cuir. Sans écrin ni papiers.', source: 'catalogue' });
+  assert.equal(watch.reference, 'CAW2111');
+});
+
+test('reference extraction joins split catalogue codes but stops before adjacent prose', () => {
+  const descriptions = [
+    ['Montre chronographe. Référence : CAW 2111. No de série : EBM4743.', 'CAW2111'],
+    ['Montre chronographe. Référence : CS 2110. Série limitée 1 461 / 5 000.', 'CS2110'],
+    ['Montre chronographe. Référence CW211A.Boîtier en acier signé.', 'CW211A'],
+    ['Montre chronographe. Référence CAW211K.FC6311. Boîtier acier.', 'CAW211K.FC6311'],
+    ['Montre chronographe. Référence CAL2110.BA0781. Boîtier acier.', 'CAL2110.BA0781'],
+    ['Montre chronographe. Référence : PAM01028. Boîtier acier.', 'PAM01028'],
+    ['Montre chronographe. Référence : CV2010-3. Boîtier acier.', 'CV2010-3'],
+    ['Montre chronographe. Référence CV2010 2024. Boîtier acier.', 'CV2010'],
+    ['Montre chronographe. Référence : 8954. Boîtier acier.', '8954'],
+  ];
+  for (const [description, expected] of descriptions) {
+    const watch = extractWatch({number:268,title:'TAG HEUER, Monaco.',description,source:'catalogue'});
+    assert.equal(watch.reference,expected,description);
+  }
+});
+
 test('a serial number is not a missing model reference', () => {
   const watch = extractWatch({ number: 262, title: 'OMEGA, Seamaster Professionnal.', description: 'OMEGA, Seamaster Professionnal. Boîtier en acier numéroté 89415867. Bracelet en acier. Boîte, sans papiers.', source: 'catalogue.pdf' });
   assert.equal(watch.reference, null);

@@ -12,7 +12,8 @@ function watchName(title) {
 }
 
 function watchReference(description) {
-  return text(description).match(/\bR[ée]f[ée]rence\s*:\s*([\p{L}\d.-]+)/iu)?.[1]?.replace(/\.+$/, '') ?? null;
+  const match = text(description).match(/\bR[ée]f[ée]rence\s*:?\s*((?:[A-Z]{2,5}\s+\d{3,6}|[\p{L}\d-]+)(?:\.(?:[A-Z]{1,4}\d{1,6}|\d{1,5}))*)/iu);
+  return match?.[1]?.replace(/(?<=\p{L})\s+(?=\d)/u, '') ?? null;
 }
 
 function watchBracelet(description) {

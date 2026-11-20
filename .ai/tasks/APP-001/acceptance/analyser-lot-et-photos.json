@@ -1,0 +1,209 @@
+{
+  "name": "APP-001-F01 Analyser un lot de montre et présenter un tableau sourcé avec photos",
+  "scenarios": [
+    {
+      "name": "APP-001-S01 Étudier une montre depuis le lien de vente et son numéro de lot",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la vente du 5 décembre 2026 contient le lot 268 TAG Heuer Monaco CAW2111"
+        },
+        {
+          "keyword": "And",
+          "text": "sa fiche, ses photos et les conditions datées de la vente sont consultables"
+        },
+        {
+          "keyword": "And",
+          "text": "deux annonces comparables de vendeurs français sont vérifiées à 4 100 € et 4 590 € hors port"
+        },
+        {
+          "keyword": "And",
+          "text": "une adjudication historique comparable de 2024 est vérifiée à 3 700 € hors frais avec 18 % de frais et aucune majoration live"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur saisit le lien de cette vente et le numéro du lot indiqué dans le formulaire puis lance l'étude"
+        },
+        {
+          "keyword": "Then",
+          "text": "un tableau sauvegardé identifie la vente, le lot, la marque, le modèle, la boîte, le bracelet et l'estimation lorsqu'elle est publiée"
+        },
+        {
+          "keyword": "And",
+          "text": "la photo disponible du lot étudié apparaît au-dessus du tableau avec le lien de sa fiche source"
+        },
+        {
+          "keyword": "And",
+          "text": "le tableau distingue la moyenne partielle Chrono24 de 4 345 € sur 2 prix demandés hors port, l'adjudication historique de 3 700 € et son coût vérifié de 4 366 € avec la date et les liens sources"
+        },
+        {
+          "keyword": "And",
+          "text": "le prix à ne pas dépasser est de 3 645,13 € hors frais sur la base des taux vérifiés de la vente ciblée"
+        },
+        {
+          "keyword": "And",
+          "text": "la date d'analyse, les différences observées entre le lot et les comparables et la limite de couverture des annonces sont visibles"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S02 Montrer les photos des comparables effectivement présentés",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une analyse du lot 268 présente une adjudication historique et deux annonces Chrono24 comparables"
+        },
+        {
+          "keyword": "And",
+          "text": "la fiche de chaque comparable fournit au moins une photo accessible"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur ouvre le tableau de cette analyse"
+        },
+        {
+          "keyword": "Then",
+          "text": "une fiche pour chacun de ces trois comparables apparaît sous le tableau avec ses photos accessibles et son lien source"
+        },
+        {
+          "keyword": "And",
+          "text": "la fiche historique indique sa date, son adjudication et ses frais vérifiés ou non vérifiés"
+        },
+        {
+          "keyword": "And",
+          "text": "les deux fiches Chrono24 indiquent des prix demandés hors port et ne sont pas présentées comme des ventes conclues"
+        },
+        {
+          "keyword": "And",
+          "text": "les annonces simplement inspectées mais non retenues ne sont pas présentées comme des comparables du tableau"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S03 Une image indisponible ne fait pas disparaître la fiche sourcée",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une étude sauvegardée possède une photo du lot et une photo pour chaque comparable présenté"
+        },
+        {
+          "keyword": "And",
+          "text": "la photo du lot et celle d'un comparable ne sont plus accessibles"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur rouvre cette étude"
+        },
+        {
+          "keyword": "Then",
+          "text": "le tableau, les prix sauvegardés et les liens vers les fiches sources restent visibles"
+        },
+        {
+          "keyword": "And",
+          "text": "les deux emplacements concernés indiquent une image indisponible sans afficher une image d'un autre lot"
+        },
+        {
+          "keyword": "And",
+          "text": "les photos toujours accessibles des autres comparables restent visibles"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S04 Conserver un résultat partiel sans inventer les prix indisponibles",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la vente et le lot 268 sont vérifiables avec un comparable historique dont les frais sont inconnus"
+        },
+        {
+          "keyword": "And",
+          "text": "la source des annonces Chrono24 refuse l'accès au moment de l'analyse"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur lance l'étude depuis le formulaire"
+        },
+        {
+          "keyword": "Then",
+          "text": "le tableau du lot est sauvegardé avec son adjudication historique brute et son coût en ligne non vérifié"
+        },
+        {
+          "keyword": "And",
+          "text": "la moyenne Chrono24 et le prix à ne pas dépasser sont indiqués comme non vérifiables faute d'accès"
+        },
+        {
+          "keyword": "And",
+          "text": "aucun zéro ou tarif supposé ne remplace ces montants indisponibles"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S05 Refuser un lot ou une vente introuvable sans créer d'étude fictive",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "aucune étude n'existe pour une vente donnée et le numéro de lot 99999"
+        },
+        {
+          "keyword": "And",
+          "text": "ce lot n'est pas dans cette vente accessible"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur saisit le lien de cette vente et le numéro du lot indiqué dans le formulaire puis lance l'étude"
+        },
+        {
+          "keyword": "Then",
+          "text": "l'application indique que le lot est introuvable dans cette vente"
+        },
+        {
+          "keyword": "And",
+          "text": "aucun tableau ni ligne sauvegardée n'est créé pour ce lot"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S11 Présenter plusieurs adjudications datées sans inventer leurs coûts",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "le lot 318 Carrera de la vente du 5 juin 2021 est identifiable"
+        },
+        {
+          "keyword": "And",
+          "text": "deux comparables historiques sont adjugés à 1 650 € le 11 juin 2022 et 1 900 € le 15 juin 2024"
+        },
+        {
+          "keyword": "And",
+          "text": "seul le catalogue de la vente de 2024 vérifie un coût en ligne de 2 242 € pour son lot comparable"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur étudie le lot 318 depuis le formulaire"
+        },
+        {
+          "keyword": "Then",
+          "text": "le tableau présente séparément les deux adjudications avec leur date, leur montant hors frais et leur lien source"
+        },
+        {
+          "keyword": "And",
+          "text": "le coût de 2022 est non vérifié tandis que le coût de 2024 est de 2 242 € frais compris"
+        },
+        {
+          "keyword": "And",
+          "text": "la moyenne des coûts en ligne vérifiés compte une seule vente et vaut 2 242 €"
+        },
+        {
+          "keyword": "And",
+          "text": "les fiches des deux ventes historiques et leurs photos accessibles apparaissent sous le tableau"
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

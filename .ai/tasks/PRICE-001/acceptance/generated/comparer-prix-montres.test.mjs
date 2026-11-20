@@ -1,0 +1,366 @@
+// Generated from .ai/tasks/PRICE-001/features/comparer-prix-montres.feature; do not edit manually.
+import test from 'node:test';
+import { runScenario } from '../../../../../test/price-acceptance-steps.mjs';
+const scenarios = [
+  {
+    "name": "PRICE-001-S01 Retenir une adjudication comparable et ses frais historiques documentés",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "le lot étudié est la TAG Heuer Carrera Calibre 16 CV2010-3 du 5 juin 2021"
+      },
+      {
+        "keyword": "And",
+        "text": "la date d'analyse est le 11 novembre 2026"
+      },
+      {
+        "keyword": "And",
+        "text": "le lot 288 Carrera CV2010-4 a été adjugé 1 900 € le 15 juin 2024 au Crédit Municipal"
+      },
+      {
+        "keyword": "And",
+        "text": "le catalogue daté de cette vente fixe 18 % TTC de frais acheteur sans majoration live pour les lots judiciaires"
+      },
+      {
+        "keyword": "When",
+        "text": "l'utilisateur demande la comparaison des prix du lot étudié"
+      },
+      {
+        "keyword": "Then",
+        "text": "le lot 288 apparaît comme comparable historique avec sa référence et son bracelet acier différents"
+      },
+      {
+        "keyword": "And",
+        "text": "le montant adjugé est indiqué comme 1 900 € hors frais et le coût en ligne hors transport comme 2 242 €"
+      },
+      {
+        "keyword": "And",
+        "text": "les liens de la fiche d'adjudication et du catalogue historique justifient ce calcul"
+      },
+      {
+        "keyword": "And",
+        "text": "l'adjudication du lot étudié du 5 juin 2021 ne compte pas dans la moyenne des cinq dernières années"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S02 Ne pas attribuer les frais de 2026 aux ventes antérieures",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "une vente comparable de 2024 a des conditions contemporaines fixant 18 % TTC sans majoration live"
+      },
+      {
+        "keyword": "And",
+        "text": "les CGV du 24 avril 2026 fixent 18 % TTC plus 1,2 % TTC pour les achats live régis par elles"
+      },
+      {
+        "keyword": "When",
+        "text": "le coût d'achat en ligne de la vente 2024 est calculé"
+      },
+      {
+        "keyword": "Then",
+        "text": "seul le taux vérifié de cette vente de 2024 est utilisé"
+      },
+      {
+        "keyword": "And",
+        "text": "aucun supplément de 1,2 % tiré des CGV de 2026 n'est ajouté"
+      },
+      {
+        "keyword": "And",
+        "text": "les frais acheteur et les frais live ne sont pas comptés deux fois"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S03 Ne pas inventer un coût en ligne si les frais de vente historiques sont inconnus",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "une adjudication comparable dans les cinq dernières années a un prix vérifié"
+      },
+      {
+        "keyword": "And",
+        "text": "aucune condition de frais applicable à sa vente n'a pu être vérifiée"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Crédit Municipal est calculée"
+      },
+      {
+        "keyword": "Then",
+        "text": "cette adjudication brute est affichée avec sa date et son lien"
+      },
+      {
+        "keyword": "And",
+        "text": "son coût d'achat en ligne est indiqué comme non vérifié"
+      },
+      {
+        "keyword": "And",
+        "text": "elle n'entre pas dans la moyenne des coûts d'achat en ligne vérifiés"
+      },
+      {
+        "keyword": "And",
+        "text": "le nombre de ventes retenues dans cette moyenne est indiqué"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S04 Calculer les trois annonces françaises les moins chères hors port",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "les trois premières pages Chrono24 analysées incluent quatre annonces distinctes et disponibles de la même montre chez des vendeurs situés en France"
+      },
+      {
+        "keyword": "And",
+        "text": "leurs prix affichés hors port en euros sont 1 500 €, 1 650 €, 1 800 € et 2 300 €"
+      },
+      {
+        "keyword": "And",
+        "text": "les résultats contiennent aussi une montre d'un autre modèle, un accessoire, une annonce étrangère et un doublon"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Chrono24 est calculée"
+      },
+      {
+        "keyword": "Then",
+        "text": "seuls les trois prix d'annonces françaises comparables les plus bas de l'échantillon sont retenus"
+      },
+      {
+        "keyword": "And",
+        "text": "leur moyenne de prix affichés hors port est 1 650 € sur 3 annonces"
+      },
+      {
+        "keyword": "And",
+        "text": "chaque annonce retenue a son lien, son prix, son pays vendeur et ses différences pertinentes avec le lot"
+      },
+      {
+        "keyword": "And",
+        "text": "aucun de ces prix n'est présenté comme un prix de vente conclue"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S05 Afficher une moyenne partielle si une seule annonce française est vérifiée",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "la recherche de Carrera CV2010-3 ne fournit aucune annonce française vérifiée"
+      },
+      {
+        "keyword": "And",
+        "text": "une recherche élargie au modèle Carrera Calibre 16 CV2010 fournit une seule annonce française vérifiée à 1 750 € hors port"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Chrono24 du lot 318 est calculée"
+      },
+      {
+        "keyword": "Then",
+        "text": "la moyenne est étiquetée « partielle : 1 annonce » et vaut 1 750 € hors port"
+      },
+      {
+        "keyword": "And",
+        "text": "la différence de référence, de bracelet et de contenu livré est indiquée"
+      },
+      {
+        "keyword": "And",
+        "text": "aucune annonce italienne à 1 690 € n'est incluse"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S06 Ne pas fabriquer de moyenne si aucun comparable n'est disponible",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "aucune offre française Alfa Romeo 8954 ni adjudication Alfa Romeo dans les cinq dernières années n'a pu être vérifiée pour le lot 323"
+      },
+      {
+        "keyword": "When",
+        "text": "l'utilisateur demande la comparaison des prix du lot 323"
+      },
+      {
+        "keyword": "Then",
+        "text": "la moyenne Chrono24 et la moyenne du coût en ligne Crédit Municipal sont indiquées comme indisponibles avec un échantillon de zéro"
+      },
+      {
+        "keyword": "And",
+        "text": "les ventes Alfa Romeo de 2020 et du premier semestre 2021 ne sont pas utilisées pour remplir la fenêtre de cinq ans"
+      },
+      {
+        "keyword": "And",
+        "text": "une autre Chopard Mille Miglia sans correspondance Alfa Romeo n'est pas substituée"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S13 Limiter la recherche aux trois premières pages sans promettre un minimum mondial",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "une recherche Panerai Luminor Marina triée par pertinence contient 5 pages et 10 annonces"
+      },
+      {
+        "keyword": "And",
+        "text": "les trois premières pages contiennent 6 annonces dont trois offres comparables de vendeurs français à 1 000 €, 1 300 € et 1 600 € hors port"
+      },
+      {
+        "keyword": "And",
+        "text": "une annonce française moins chère se trouve sur la quatrième page non analysée"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Chrono24 est calculée"
+      },
+      {
+        "keyword": "Then",
+        "text": "la moyenne de l'échantillon est 1 300 € sur 3 annonces françaises vérifiées"
+      },
+      {
+        "keyword": "And",
+        "text": "le résultat précise 3 pages et 6 annonces analysées sur 10 résultats, sans prétendre aux trois offres les moins chères de tout Chrono24"
+      },
+      {
+        "keyword": "And",
+        "text": "aucune fiche de la quatrième page n'est incluse"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S14 Ne pas confondre zéro offre dans l'échantillon avec zéro offre sur Chrono24",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "les trois premières pages d'une recherche de 5 pages ne contiennent aucun vendeur français comparable"
+      },
+      {
+        "keyword": "And",
+        "text": "une annonce française comparable existe sur la quatrième page non analysée"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Chrono24 est calculée"
+      },
+      {
+        "keyword": "Then",
+        "text": "la moyenne est indisponible faute d'offre comparable dans l'échantillon des trois premières pages"
+      },
+      {
+        "keyword": "And",
+        "text": "le résultat ne prétend pas qu'aucune annonce française n'existe sur Chrono24"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "PRICE-001-S07 Signaler un accès empêché au lieu de prétendre qu'il n'y a aucune annonce",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "une fiche de montre caractérisée par LOT-001 et une date d'analyse connue"
+      },
+      {
+        "keyword": "And",
+        "text": "les observations sont rattachées à des liens sources et à leur date de consultation"
+      },
+      {
+        "keyword": "Given",
+        "text": "la recherche Chrono24 est inaccessible à cause d'un défi de sécurité ou d'une erreur réseau"
+      },
+      {
+        "keyword": "When",
+        "text": "la comparaison Chrono24 est demandée"
+      },
+      {
+        "keyword": "Then",
+        "text": "la moyenne Chrono24 est indiquée comme non vérifiable pour cause d'accès"
+      },
+      {
+        "keyword": "And",
+        "text": "elle n'est pas présentée comme une moyenne sur zéro annonce"
+      },
+      {
+        "keyword": "And",
+        "text": "la recherche Crédit Municipal reste présentée séparément si elle a été vérifiée"
+      }
+    ],
+    "examples": []
+  }
+];
+for (const scenario of scenarios) {
+  test(scenario.name, async () => runScenario(scenario));
+}

@@ -1,0 +1,177 @@
+{
+  "name": "PRICE-001-F02 Afficher un prix à ne pas dépasser hors frais pour enchérir sur une montre",
+  "scenarios": [
+    {
+      "name": "PRICE-001-S08 Calculer le plafond à partir de la moyenne Chrono24 et des frais de la vente ciblée",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "le lot 268 TAG Heuer Monaco de la vente du 5 décembre 2026 est à venir"
+        },
+        {
+          "keyword": "And",
+          "text": "la moyenne partielle des prix demandés Chrono24 hors port est de 4 345 € sur 2 annonces françaises"
+        },
+        {
+          "keyword": "And",
+          "text": "le catalogue daté de la vente ciblée fixe 18 % TTC de frais acheteur et 1,2 % TTC de frais live sur l'adjudication"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande l'analyse du lot 268 pour un achat en ligne"
+        },
+        {
+          "keyword": "Then",
+          "text": "le « prix à ne pas dépasser » est de 3 645,13 € hors frais Crédit Municipal"
+        },
+        {
+          "keyword": "And",
+          "text": "le résultat indique la moyenne Chrono24 partielle et les frais de la vente ciblée utilisés pour ce plafond"
+        },
+        {
+          "keyword": "And",
+          "text": "le coût estimé avec ces frais ne dépasse pas 4 345 €"
+        },
+        {
+          "keyword": "And",
+          "text": "les 3 700 € adjugés hors frais d'un autre lot en 2024 ne sont pas présentés comme le plafond"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "PRICE-001-S09 Arrondir le plafond vers le bas sans franchir la valeur de référence",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la moyenne partielle des prix demandés Chrono24 hors port est de 4 345 € sur 2 annonces françaises"
+        },
+        {
+          "keyword": "And",
+          "text": "le catalogue daté de la vente ciblée fixe 18 % TTC de frais acheteur et 1,2 % TTC de frais live sur l'adjudication"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande le « prix à ne pas dépasser »"
+        },
+        {
+          "keyword": "Then",
+          "text": "le plafond affiché est 3 645,13 € hors frais"
+        },
+        {
+          "keyword": "And",
+          "text": "une enchère à 3 645,14 € dépasserait 4 345 € frais compris"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "PRICE-001-S10 Ne pas calculer de plafond avec les frais d'une autre vente",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la moyenne partielle des prix demandés Chrono24 hors port est de 4 345 € sur 2 annonces françaises"
+        },
+        {
+          "keyword": "And",
+          "text": "seuls les frais d'une ancienne vente comparable sont connus, pas ceux de la vente ciblée"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande le « prix à ne pas dépasser »"
+        },
+        {
+          "keyword": "Then",
+          "text": "le plafond est indiqué comme indisponible faute de frais vérifiés pour la vente ciblée"
+        },
+        {
+          "keyword": "And",
+          "text": "aucun taux d'une vente ancienne n'est appliqué au lot étudié"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "PRICE-001-S11 Ne pas inventer de plafond sans moyenne d'annonces",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "aucune annonce Chrono24 comparable de vendeur français n'est disponible après une recherche aboutie"
+        },
+        {
+          "keyword": "And",
+          "text": "les frais de la vente ciblée sont vérifiés"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande le « prix à ne pas dépasser »"
+        },
+        {
+          "keyword": "Then",
+          "text": "le plafond est indiqué comme indisponible faute de moyenne Chrono24"
+        },
+        {
+          "keyword": "And",
+          "text": "aucune adjudication historique ni estimation de la montre ne remplace cette moyenne"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "PRICE-001-S15 Signaler qu'un plafond fondé sur les trois premières pages est indicatif",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la moyenne des trois annonces françaises vérifiées dans les trois premières pages est de 1 300 € hors port"
+        },
+        {
+          "keyword": "And",
+          "text": "la recherche compte 5 pages et 10 annonces, dont seulement 6 ont été analysées"
+        },
+        {
+          "keyword": "And",
+          "text": "la vente ciblée applique 18 % TTC de frais acheteur et 1,2 % TTC de frais live"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande le « prix à ne pas dépasser »"
+        },
+        {
+          "keyword": "Then",
+          "text": "le plafond calculé est 1 090,60 € hors frais sur la base de l'échantillon"
+        },
+        {
+          "keyword": "And",
+          "text": "le résultat précise que des offres moins chères peuvent exister après la troisième page"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "PRICE-001-S12 Distinguer une recherche Chrono24 inaccessible d'un prix nul",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "la recherche Chrono24 est inaccessible et ne permet pas de vérifier une moyenne"
+        },
+        {
+          "keyword": "And",
+          "text": "les frais de la vente ciblée sont vérifiés"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur demande le « prix à ne pas dépasser »"
+        },
+        {
+          "keyword": "Then",
+          "text": "le plafond est indiqué comme non vérifiable faute d'accès à Chrono24"
+        },
+        {
+          "keyword": "And",
+          "text": "aucun montant de zéro euro n'est affiché comme plafond"
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "id": "LOT-001",
   "title": "Retrouver et caractériser une montre à partir d'un lot d'enchères Crédit municipal",
-  "status": "qa_passed_mutation_stale",
+  "status": "validated_reference_fix_quality_and_qa_refresh_pending",
   "current_role": null,
   "current_feature": null,
   "roles": {
@@ -15,10 +15,10 @@
   },
   "checks": {
     "gherkin": "passed",
-    "crap": "passed",
-    "dry": "passed",
-    "mutation": "stale_after_qa_fix",
-    "qa": "passed"
+    "crap": "stale_after_reference_fix",
+    "dry": "stale_after_reference_fix",
+    "mutation": "stale_after_reference_fix",
+    "qa": "passed_before_reference_fix_refresh_pending"
   },
   "open_questions": [
     "Quelles restrictions d'accès s'appliquent aux catalogues ou PDF de ventes futures ?",
@@ -37,12 +37,12 @@
   "crap_analysis": {
     "report": ".metrics/crap.edn",
     "coverage": "coverage/lcov.info",
-    "status": "passed",
+    "status": "stale_after_reference_fix",
     "worst_function": "pageCount",
     "worst_score": 6.0
   },
   "mutation_report": {
-    "status": "stale_after_qa_fix",
+    "status": "stale_after_reference_fix",
     "snapshots": ".metrics/mutate/",
     "total": 117,
     "killed": 95,
@@ -58,7 +58,7 @@
     "note": "Validation utilisateur de LOT-001 après QA réussie ; le rapport de mutation demeure périmé suite au correctif QA."
   },
   "mutation_scan": {
-    "status": "stale_after_qa_fix",
+    "status": "stale_after_reference_fix",
     "sites_by_file": {
       "src/lots.mjs": 55,
       "src/pdf-lots.mjs": 34,
@@ -67,5 +67,11 @@
       "scripts/generate-acceptance.mjs": 0
     }
   },
-  "updated_at": "2026-11-02T02:35:37Z"
+  "reference_fix": {
+    "status": "implemented",
+    "examples": ["CAW 2111 -> CAW2111", "CS 2110 -> CS2110", "CW211A.Boîtier -> CW211A"],
+    "checks": "pnpm test 107/107; pnpm acceptance 35/35",
+    "saved_studies": "not_recomputed_automatically"
+  },
+  "updated_at": "2026-11-18T19:47:59Z"
 }

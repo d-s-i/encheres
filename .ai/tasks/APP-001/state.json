@@ -1,28 +1,106 @@
 {
   "id": "APP-001",
-  "title": "Étudier un lot par chat et retrouver son tableau d'analyse sauvegardé",
-  "status": "ready_for_specification",
-  "current_role": "specifier",
+  "title": "Étudier une montre par formulaire et retrouver son tableau sauvegardé",
+  "status": "validated_with_mutation_deferred",
+  "current_role": null,
   "current_feature": null,
   "roles": {
     "init-task": "completed",
-    "specifier": "not_run",
-    "coder": "not_run",
-    "cleaner": "not_run",
-    "architect": "not_run",
+    "specifier": "completed",
+    "coder": "completed",
+    "cleaner": "completed",
+    "architect": "completed",
     "hardener": "not_run",
-    "qa": "not_run"
+    "qa": "completed"
   },
   "checks": {
-    "gherkin": "not_run",
-    "crap": "not_run",
-    "dry": "not_run",
-    "mutation": "not_run",
-    "qa": "not_run"
+    "gherkin": "passed",
+    "crap": "passed",
+    "dry": "passed",
+    "mutation": "deferred_by_user_not_run",
+    "qa": "passed",
+    "architecture": "passed",
+    "property": "passed"
   },
   "open_questions": [
-    "Souhaitez-vous également une vue globale de tous les lots en plus d'un tableau par lot ?"
+    "NON BLOQUANTE : faut-il plus tard permettre des observations manuelles modifiables ?"
   ],
-  "features": {},
-  "updated_at": "2026-11-01T23:54:35Z"
+  "features": {
+    "APP-001-F01": {"status":"completed","file":"features/analyser-lot-et-photos.feature","qa":"qa/procedure.md"},
+    "APP-001-F02": {"status":"completed","file":"features/sauvegarder-et-recommencer.feature","qa":"qa/procedure.md"},
+    "APP-001-F03": {"status":"completed","file":"features/tableau-global-excel.feature","qa":"qa/procedure.md"}
+  },
+  "gherkin_validation": {
+    "parse": "passed",
+    "scenarios": 14,
+    "dry": "reviewed_zero_findings",
+    "APP-001-F01": {"parse":"passed","scenarios":6,"dry_report":"acceptance/analyser-lot-et-photos-dry-report.json"},
+    "APP-001-F02": {"parse":"passed","scenarios":5,"dry_report":"acceptance/sauvegarder-et-recommencer-dry-report.json"},
+    "APP-001-F03": {"parse":"passed","scenarios":3,"dry_report":"acceptance/tableau-global-excel-dry-report.json"}
+  },
+  "qa_procedure": "qa/procedure.md",
+  "qa_report": "qa/report.md",
+  "qa_result": {"status":"PASS","command":"node .ai/tasks/APP-001/qa/scripts/run.mjs","result":"qa/result.json","preflight":"passed_48_captured_public_responses","scenarios":14,"passed":14,"failed":0,"environment_error":0,"not_run":0,"product_fix":"src/price-matching.mjs sous-\\s*compteur"},
+  "qa_regression": {"unit":"pnpm test 111/111 PASS","acceptance":"pnpm acceptance 35/35 PASS","property":"pnpm property 2/2 PASS","crap":"fresh_lcov_max_6.0_passed","dry":"zero_candidates_passed"},
+  "hardener_decision": "deferred_by_user_before_external_qa",
+  "cleaner_report": "checks/cleaner.md",
+  "architect_report": "checks/architect.md",
+  "architecture_check": {"status":"passed","command":"pnpm test","file":"test/architecture.test.mjs","cases":4},
+  "property_test": {"status":"passed","command":"pnpm property","files":["test/property/bid-ceiling.test.mjs","test/property/study-identity.test.mjs"],"cases":2},
+  "cleaner_verification": {
+    "unit": "pnpm test — 108/108 PASS",
+    "acceptance": "pnpm acceptance — 35/35 PASS",
+    "crap": {"status":"passed","report":".metrics/crap.edn","coverage":"coverage/lcov.info","functions":105,"worst_score":6.0},
+    "dry": {"status":"passed","report":".metrics/dry.edn","candidates":0},
+    "mutation_scan": {"status":"passed_scan_only","sites_by_file":{"src/app.mjs":47,"src/app-view.mjs":91,"src/app-images.mjs":19,"src/offer-images.mjs":9,"src/price-packet.mjs":88,"src/watch.mjs":14,"bin/app.mjs":0,"public/app.js":0,"scripts/generate-acceptance.mjs":0}},
+    "uml_quality": "crap_conversion_passed_mutation_overlay_stale"
+  },
+  "development_verification": {
+    "APP-001-F01": {
+      "unit": "pnpm test — 96/96 PASS",
+      "acceptance": "pnpm acceptance — 27/27 PASS, dont 6 APP-001-F01",
+      "parser": "parse-gherkin — PASS",
+      "public_smoke": "GET / on bin/app.mjs — HTTP 200",
+      "build_typecheck": "not_configured",
+      "qa_external": "not_run"
+    },
+    "APP-001-F02": {
+      "unit": "pnpm test — 103/103 PASS",
+      "acceptance": "pnpm acceptance — 32/32 PASS, dont 5 APP-001-F02",
+      "parser": "parse-gherkin via acceptance:generate — PASS",
+      "build_typecheck": "not_configured",
+      "qa_external": "not_run"
+    },
+    "APP-001-F03": {
+      "unit": "pnpm test — 106/106 PASS",
+      "acceptance": "pnpm acceptance — 35/35 PASS, dont 3 APP-001-F03",
+      "parser": "parse-gherkin — PASS",
+      "gherkin_dry": "reviewed_zero_findings",
+      "viewport": "Chromium 1357px: current saved grid pageWidth=1342px, tableWidth=containerWidth=1326px; 3 direct Chrono24 links visible without horizontal scrolling",
+      "chrono_links": "saved lot 268: 3 selected listing URLs rendered; unit 106/106 and acceptance 35/35 PASS",
+      "build_typecheck": "not_configured",
+      "qa_external": "not_run"
+    }
+  },
+  "human_approval": "approved_by_user_coder_request",
+  "validation_decision": {
+    "status": "accepted_by_user",
+    "scope": "APP-001_F01_F02_F03_after_external_qa",
+    "note": "L'utilisateur confirme « yes je valide » après QA externe 14/14 PASS. La mutation APP-001 reste volontairement différée et ne doit pas être présentée comme exécutée ; les prix sauvegardés sont des instantanés.",
+    "remaining_check": "optional_full_source_mutation"
+  },
+  "layout_request": "user_requested_excel_grid_without_horizontal_scrolling",
+  "chrono_links_request": "user_requested_direct_listing_links_in_chrono_average_cell",
+  "shared_reference_fix": {
+    "status": "implemented_in_LOT-001_parser",
+    "effect": "new studies receive corrected historical references; saved studies remain unchanged until deletion and reanalysis",
+    "regression": "pnpm test 107/107; pnpm acceptance 35/35; external QA not run"
+  },
+  "visual_refresh": {
+    "status": "implemented_css_only",
+    "file": "public/app.css",
+    "input_output_contract": "unchanged",
+    "verification": "pnpm test 106/106; pnpm acceptance 35/35; Chromium 1357px pageWidth 1342px, tableWidth 1299px, containerWidth 1301px"
+  },
+  "updated_at": "2026-11-18T21:11:58Z"
 }

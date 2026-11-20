@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "feature_name": "APP-001-F03 Reprendre la structure du tableau Excel pour toutes les études sauvegardées",
+  "summary": {
+    "step_occurrences": 23,
+    "unique_steps": 21,
+    "findings": 0
+  },
+  "findings": []
+}

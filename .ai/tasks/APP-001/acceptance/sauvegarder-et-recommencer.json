@@ -1,0 +1,135 @@
+{
+  "name": "APP-001-F02 Retrouver, bloquer et supprimer les analyses de lots",
+  "scenarios": [
+    {
+      "name": "APP-001-S06 Retrouver le tableau enregistré sans recalcul automatique",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une étude de la vente du 5 décembre 2026 et du lot 268 est sauvegardée avec une moyenne de 4 345 €"
+        },
+        {
+          "keyword": "And",
+          "text": "la date d'analyse enregistrée est le 15 novembre 2026 avec les sources et photos disponibles"
+        },
+        {
+          "keyword": "And",
+          "text": "les annonces consultables affichent désormais d'autres prix"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur ferme puis rouvre l'application et consulte la ligne de ce lot"
+        },
+        {
+          "keyword": "Then",
+          "text": "son tableau enregistré affiche encore la date du 15 novembre 2026, la moyenne de 4 345 € et ses liens sources"
+        },
+        {
+          "keyword": "And",
+          "text": "aucune nouvelle moyenne ni nouvelle analyse du même lot n'est créée par cette consultation"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S07 Bloquer une analyse déjà sauvegardée pour la même vente et le même lot",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une étude de la vente du 5 décembre 2026 et du lot 268 est sauvegardée avec une moyenne de 4 345 €"
+        },
+        {
+          "keyword": "And",
+          "text": "les prix des sources ont changé depuis son enregistrement"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur saisit de nouveau le lien de cette vente et le numéro de lot 268 puis demande une étude"
+        },
+        {
+          "keyword": "Then",
+          "text": "l'application indique que ce lot de cette vente a déjà été analysé et permet de retrouver le tableau existant"
+        },
+        {
+          "keyword": "And",
+          "text": "la liste conserve une seule ligne pour cette vente et ce lot, sans remplacer les montants ni la date enregistrés"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S08 Supprimer une ligne et recommencer l'analyse du même lot",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une étude de la vente du 5 décembre 2026 et du lot 268 est sauvegardée avec une moyenne de 4 345 €"
+        },
+        {
+          "keyword": "And",
+          "text": "les sources contrôlées fournissent désormais une moyenne vérifiée de 3 933 € et les mêmes frais cibles de 18 % et 1,2 % live"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur supprime la ligne de cette étude puis relance le formulaire pour cette vente et ce lot"
+        },
+        {
+          "keyword": "Then",
+          "text": "l'ancienne étude n'est plus consultable depuis la liste des analyses"
+        },
+        {
+          "keyword": "And",
+          "text": "une seule nouvelle ligne est sauvegardée pour cette vente et ce lot avec la moyenne de 3 933 € et le plafond de 3 299,49 € hors frais"
+        },
+        {
+          "keyword": "And",
+          "text": "les sources et la date de la nouvelle analyse correspondent aux données reconsultées, sans reprendre les anciens montants"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S09 Distinguer un même numéro de lot dans deux ventes différentes",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "le lot 268 existe dans deux ventes distinctes de montres avec des sources vérifiables"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur étudie ce lot dans chacune des deux ventes"
+        },
+        {
+          "keyword": "Then",
+          "text": "la liste contient deux lignes identifiées chacune par sa vente et son numéro de lot"
+        },
+        {
+          "keyword": "And",
+          "text": "chaque ligne mène au tableau et aux photos de sa propre vente, sans mélanger les sources"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S10 Supprimer une ligne sans toucher à l'étude de l'autre vente",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "deux analyses de lots numéro 268 sont sauvegardées pour des ventes distinctes"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur supprime la ligne de la première vente"
+        },
+        {
+          "keyword": "Then",
+          "text": "seule cette ligne n'est plus consultable"
+        },
+        {
+          "keyword": "And",
+          "text": "l'étude de la seconde vente et ses photos restent consultables"
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

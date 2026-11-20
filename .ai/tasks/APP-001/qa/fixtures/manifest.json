@@ -1,0 +1,262 @@
+{
+  "captured_at": "2026-11-18T20:34:52.740Z",
+  "sources": {
+    "sale2022": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/",
+      "file": "sale2022.html",
+      "bytes": 252476,
+      "sha256": "5b9c8142782e71b38e1c94e34442cb44eeb1f1617e26aef33c20df2c19887a3b",
+      "contentType": "text/html"
+    },
+    "lot2022_268": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/chopard-happy-sport-montre-dhomme-ronde-en-acie/",
+      "file": "lot2022_268.html",
+      "bytes": 182724,
+      "sha256": "763522d9ec8c6c1a93305c5a99c260f949939dc04a66f9682b9a057a36a5ee19",
+      "contentType": "text/html"
+    },
+    "lot2022_monaco": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/221210000/tag-heuer-monaco-montre-dhomme-carree-referenc/",
+      "file": "lot2022_monaco.html",
+      "bytes": 212833,
+      "sha256": "23935d80caf51b70c0fed10d948ce46ecca74899d27f97dd75402cbbc48e6b43",
+      "contentType": "text/html"
+    },
+    "lot2023_panerai": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/230617000/panerai-luminor-marina-montre-de-plongee-de-form/",
+      "file": "lot2023_panerai.html",
+      "bytes": 201913,
+      "sha256": "3fb0a39589a7c7f23eca3c17a6af7f7ab55d2daaa9cfe1771534ca770a09920b",
+      "contentType": "text/html"
+    },
+    "lot2021_monaco": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/211211000/tag-heuer-monaco-calibre-12-montre-dhomme-carre/",
+      "file": "lot2021_monaco.html",
+      "bytes": 182732,
+      "sha256": "fbd1abbd981aa0452ca0f76a511b7012370aa5b3f6de9d365928ef0372a46610",
+      "contentType": "text/html"
+    },
+    "lot2023_monaco_june": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/230617000/tag-heuer-monaco-edition-limitee-tribute-to-steve/",
+      "file": "lot2023_monaco_june.html",
+      "bytes": 195850,
+      "sha256": "2bd9c0ca391a2a8ffa9fe6a1f37d8dcd281e04dd14bda897de72026d3aeddbba",
+      "contentType": "text/html"
+    },
+    "lot2023_monaco_dec": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/231209000/tag-heuer-monaco-montre-dhomme-de-forme-carree-2/",
+      "file": "lot2023_monaco_dec.html",
+      "bytes": 234113,
+      "sha256": "e01f6234f26b7863830089591ecbbe4748d4f9a3f5ad813c1b80765e0d599600",
+      "contentType": "text/html"
+    },
+    "lot2025_monaco": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/250621000/tag-heuer-monaco-montre-de-forme-carree-chronog/",
+      "file": "lot2025_monaco.html",
+      "bytes": 188605,
+      "sha256": "19a3c06a3992b6d57414a94700a23857d79366a329199c18722a9cbd93069e3f",
+      "contentType": "text/html"
+    },
+    "lot2026_june": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/260620000/tag-heuer-monaco-gulf-edition-montre-bracelet-d/",
+      "file": "lot2026_june.html",
+      "bytes": 211321,
+      "sha256": "359d0c0bffbfffd926a14697e543b7aebe6b630f5900fdd44d7406828bb9f8d7",
+      "contentType": "text/html"
+    },
+    "sale2026page4": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=4",
+      "file": "sale2026page4.html",
+      "bytes": 202794,
+      "sha256": "0ffd253b4a0231a2d716c7534b7fdd9abb9cf0b0db48c1d7650619c4b572af85",
+      "contentType": "text/html"
+    },
+    "sale2026page5": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=5",
+      "file": "sale2026page5.html",
+      "bytes": 183287,
+      "sha256": "6fcc8c8899b2e809fde6d921e3ef0f6dfb6f82c1257f9469d4d746c45ca677c9",
+      "contentType": "text/html"
+    },
+    "lot343": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/panerai-luminor-marina-montre-bracelet-de-forme/",
+      "file": "lot343.html",
+      "bytes": 212595,
+      "sha256": "884543b3ce6280fac7e8f2f10ac518efc0738b881d16c9141d3d2e2cec5d80f0",
+      "contentType": "text/html"
+    },
+    "image-lot2022_268": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/220611000/images/095906-210951328-eeef3c3be839188fd63dbb8c05435962419.jpg",
+      "file": "image-lot2022_268.jpg",
+      "bytes": 4285,
+      "sha256": "4f24c0bb266b823d1f2d74165e6a94ece0f4599490718a4e5c6a164027ab7a70",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2022_monaco": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/221210000/images/111830-11730434-83684d5a5d6db3cd7202b5f26603ffe3419.jpg",
+      "file": "image-lot2022_monaco.jpg",
+      "bytes": 10914,
+      "sha256": "00ce8b3b297dc5ea4b1e44f3e442f0d742b3fd33c54340c39145dbf2c5cee7db",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2023_panerai": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/163839-536598397-c109c73f0766a69d8a3b8560dd2714cf419.jpg",
+      "file": "image-lot2023_panerai.jpg",
+      "bytes": 4866,
+      "sha256": "544bf1687a5cdfad6ce37edbd7c2033ac66e01902c2abbf7de06d33a8e1bd795",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2021_monaco": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/211211000/images/102207-295382676-541fac27def5d2dd410180072e0f4c06419.jpg",
+      "file": "image-lot2021_monaco.jpg",
+      "bytes": 5373,
+      "sha256": "862b818adfba4093911276309a54d5c170f9272e54f4a5babfd3a55667c7c4fd",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2023_monaco_june": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/154236-588463340-6beb21721839fd4873dcbd5c6bc009bc419.jpg",
+      "file": "image-lot2023_monaco_june.jpg",
+      "bytes": 3666,
+      "sha256": "494ebe96ac60075e8e278138c3266c60e537b78135124d34bbdce3749dc4cd45",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2023_monaco_dec": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/231209000/images/122427-547496283-0d5e686eba55cc0031ed5612582e2c06419.jpg",
+      "file": "image-lot2023_monaco_dec.jpg",
+      "bytes": 3920,
+      "sha256": "e3298fe58a458f14a99c3f5872203c571a4a83822c96a19979b3a343ee590adc",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2025_monaco": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/250621000/images/275-1.jpg",
+      "file": "image-lot2025_monaco.jpg",
+      "bytes": 5434,
+      "sha256": "6b1f19a6ca31d937502b0cb34236fc3c28d9dd8260baeda006581356477d4735",
+      "contentType": "image/jpeg"
+    },
+    "image-lot2026_june": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/260620000/images/386-1.jpg",
+      "file": "image-lot2026_june.jpg",
+      "bytes": 5555,
+      "sha256": "80f81a3f81c944a462b46a8c08b08ba6b3abdef428e09f7843819aa15ac83d78",
+      "contentType": "image/jpeg"
+    },
+    "image-lot343": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-1.jpg",
+      "file": "image-lot343.jpg",
+      "bytes": 4255,
+      "sha256": "975440135aa9b776ecdbdd4ec62122a5c3f35a7bb5393896f9399e501580b22c",
+      "contentType": "image/jpeg"
+    },
+    "image-lot268": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-1.jpg",
+      "file": "image-lot268.jpg",
+      "bytes": 4090,
+      "sha256": "ada22ea3dbc5abfc0831efa360131676601c02a1cc8b046d9e8e576aff0c146f",
+      "contentType": "image/jpeg"
+    },
+    "image-lot246": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-1.jpg",
+      "file": "image-lot246.jpg",
+      "bytes": 6100,
+      "sha256": "99c8b9ed7de9a4fa46ab658bb6d3fa2cc48cd0c28d1caefe0ebd8b7fb1c725bc",
+      "contentType": "image/jpeg"
+    },
+    "image-lot318": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/210605000/images/163056-693852471-4570f896af899a3abac133b60ab729f9419.jpg",
+      "file": "image-lot318.jpg",
+      "bytes": 2903,
+      "sha256": "018493873ab1e5c5dc85e552cef8997ff27c46ac22c377ffd82e16b455e8da88",
+      "contentType": "image/jpeg"
+    },
+    "image-lot288": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/288-1.jpg",
+      "file": "image-lot288.jpg",
+      "bytes": 6242,
+      "sha256": "aee45f8468a5272730097b4ffe197b1ed8c5c500742e4e801192a5d1e06d528a",
+      "contentType": "image/jpeg"
+    },
+    "image-lot368": {
+      "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/220611000/images/164831-836649007-19ad05339f8ac327eedcca51b3a4c70f419.jpg",
+      "file": "image-lot368.jpg",
+      "bytes": 4982,
+      "sha256": "411de79f062dfd5e1adfe113dacdc68a98f1baa879d813d0a1ecee39320e6fdb",
+      "contentType": "image/jpeg"
+    },
+    "packet-48909624": {
+      "url": "https://api.pckt.sh/v1/chrono24/product?id=48909624&currency=EUR&language=fr_FR",
+      "file": "packet-48909624.json",
+      "bytes": 3675,
+      "sha256": "2f99d1280c7bc043ea80da02e1d50cd514a136ace782d6ff95ea617e3daed1f9",
+      "contentType": "application/json",
+      "originalSha256": "2e2249e763fa93ac2242806ec95857437dc98d0b7f9f117c2a4e74a1cac022d8"
+    },
+    "image-packet-48909624": {
+      "url": "https://img.chrono24.com/images/uhren/48909624-x113b4xkkqv4m5hizmy3809s-ExtraLarge.jpg",
+      "file": "image-packet-48909624.jpg",
+      "bytes": 142001,
+      "sha256": "dfd27b0c233eec35dea9a53961b5dbf956fb60ee36860aaa2b8d7c8e2fd57db5",
+      "contentType": "image/jpeg"
+    },
+    "packet-48704080": {
+      "url": "https://api.pckt.sh/v1/chrono24/product?id=48704080&currency=EUR&language=fr_FR",
+      "file": "packet-48704080.json",
+      "bytes": 3451,
+      "sha256": "f9d6361ee30feb3c6580402b077ffb7d1d1d9129238e7cb472f86001a7f4823c",
+      "contentType": "application/json",
+      "originalSha256": "45aa9bbd5a41c055695805ccee9ef54c1ec156f5a31c5afc79d1dfe453c389ed"
+    },
+    "image-packet-48704080": {
+      "url": "https://img.chrono24.com/images/uhren/48704080-7stnse4fx663eaovlojl4gh9-ExtraLarge.jpg",
+      "file": "image-packet-48704080.jpg",
+      "bytes": 44576,
+      "sha256": "896658dc6ab0b6d6240fa60bc6dd1a9a591db35855885378b00eada5f7c37206",
+      "contentType": "image/jpeg"
+    },
+    "packet-41128458": {
+      "url": "https://api.pckt.sh/v1/chrono24/product?id=41128458&currency=EUR&language=fr_FR",
+      "file": "packet-41128458.json",
+      "bytes": 3713,
+      "sha256": "a08eea060ca115810414db3b9a5c05bab32989ca2b3a15b825c94400692c6d04",
+      "contentType": "application/json",
+      "originalSha256": "0bd43eca65d0779ab4778b9a0253c670c6e990eea80ff9a210630951d930b818"
+    },
+    "image-packet-41128458": {
+      "url": "https://img.chrono24.com/images/uhren/41128458-1jmt8spq351f19gax7zrm2f9-ExtraLarge.jpg",
+      "file": "image-packet-41128458.jpg",
+      "bytes": 96392,
+      "sha256": "9f7d12391addf7910300bc3f8702b82864b65ebbaf0fe0ea67df68deb5964b83",
+      "contentType": "image/jpeg"
+    },
+    "packet-45122294": {
+      "url": "https://api.pckt.sh/v1/chrono24/product?id=45122294&currency=EUR&language=fr_FR",
+      "file": "packet-45122294.json",
+      "bytes": 3084,
+      "sha256": "afb86e8daf014c43ad5c7baf9d7cfeb471738f10c3eea6cae35536bc2171b295",
+      "contentType": "application/json",
+      "originalSha256": "6e091810feaae574da64b06928b673014e0d3552701b342167d4d3b1ad527f30"
+    },
+    "image-packet-45122294": {
+      "url": "https://img.chrono24.com/images/uhren/45122294-ljdcf8d1d5muah2pul6d3j5v-ExtraLarge.jpg",
+      "file": "image-packet-45122294.jpg",
+      "bytes": 69437,
+      "sha256": "3633421e474414144b4240872641ff73ce48f70a938ad1d4321d500addef4340",
+      "contentType": "image/jpeg"
+    },
+    "packet-48045150": {
+      "url": "https://api.pckt.sh/v1/chrono24/product?id=48045150&currency=EUR&language=fr_FR",
+      "file": "packet-48045150.json",
+      "bytes": 3128,
+      "sha256": "1f646f05c6ef2446f23a890f3aa890009e249140514ccffec8b48c3c2cf33fed",
+      "contentType": "application/json",
+      "originalSha256": "b7fe80b503bf19eacdb9dc722660377cbfe5c3b62eac23ffe246647f6e069f57"
+    },
+    "image-packet-48045150": {
+      "url": "https://img.chrono24.com/images/uhren/tctbnufzj4u3-w5fhct7rlce78v33bpozd2ze-ExtraLarge.jpg",
+      "file": "image-packet-48045150.jpg",
+      "bytes": 119066,
+      "sha256": "cc0fda8fe09fe19b23a7c1d09dbf5aa7a1d3e69f754f92a278c278907fef4306",
+      "contentType": "image/jpeg"
+    }
+  }
+}

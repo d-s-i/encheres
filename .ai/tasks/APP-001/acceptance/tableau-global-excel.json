@@ -1,0 +1,115 @@
+{
+  "name": "APP-001-F03 Reprendre la structure du tableau Excel pour toutes les études sauvegardées",
+  "scenarios": [
+    {
+      "name": "APP-001-S12 Présenter les lots sauvegardés en lignes et les ventes historiques en colonnes datées",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "deux études de montres sont sauvegardées pour les lots 268 et 343 de la vente du 5 décembre 2026"
+        },
+        {
+          "keyword": "And",
+          "text": "le lot 268 a des comparables historiques vendus le 15 juin 2024 et le 11 juin 2022"
+        },
+        {
+          "keyword": "And",
+          "text": "le lot 343 a un comparable historique vendu le 9 décembre 2023"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur ouvre la grille des études"
+        },
+        {
+          "keyword": "Then",
+          "text": "un tableau présente une ligne par lot avec vente et numéro, marque, type, boîtes, bracelet, estimation, prix moyen Chrono24, moyenne des coûts Crédit Municipal et observations"
+        },
+        {
+          "keyword": "And",
+          "text": "les ventes historiques disposent de colonnes distinctes datées du 11 juin 2022, du 9 décembre 2023 et du 15 juin 2024"
+        },
+        {
+          "keyword": "And",
+          "text": "chaque valeur historique est associée à son lot et distingue adjudication hors frais et coût en ligne vérifié ou non vérifié"
+        },
+        {
+          "keyword": "And",
+          "text": "la cellule Chrono24 du lot 268 contient les liens directs des deux annonces retenues sans annonce non retenue"
+        },
+        {
+          "keyword": "And",
+          "text": "chaque ligne permet d'ouvrir la fiche avec ses photos et de supprimer uniquement cette étude"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S13 Ne pas remplir artificiellement une case historique ou un prix moyen indisponible",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "une analyse sauvegardée du lot 323 Chopard Alfa Romeo ne contient ni adjudication historique admissible ni annonce française vérifiée"
+        },
+        {
+          "keyword": "And",
+          "text": "une autre analyse sauvegardée contient une adjudication historique datée avec frais inconnus"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur ouvre la grille des études"
+        },
+        {
+          "keyword": "Then",
+          "text": "la ligne du lot 323 indique des moyennes indisponibles sans montant inventé"
+        },
+        {
+          "keyword": "And",
+          "text": "sa case dans la colonne de la vente historique de l'autre lot reste vide ou indique une absence de donnée"
+        },
+        {
+          "keyword": "And",
+          "text": "sa cellule Chrono24 sans annonce retenue ne contient aucun lien d'annonce"
+        },
+        {
+          "keyword": "And",
+          "text": "l'autre ligne affiche le montant adjugé hors frais mais aucun coût en ligne prétendu vérifié"
+        }
+      ],
+      "examples": []
+    },
+    {
+      "name": "APP-001-S14 Tenir la grille sur la largeur de la capture sans défilement horizontal",
+      "steps": [
+        {
+          "keyword": "Given",
+          "text": "plusieurs lots sauvegardés totalisent six dates distinctes de ventes historiques"
+        },
+        {
+          "keyword": "And",
+          "text": "l'écran a la largeur de 1 357 pixels de la capture Excel"
+        },
+        {
+          "keyword": "When",
+          "text": "l'utilisateur ouvre la grille des études"
+        },
+        {
+          "keyword": "Then",
+          "text": "la grille et la page restent visibles dans cette largeur sans défilement horizontal"
+        },
+        {
+          "keyword": "And",
+          "text": "au plus quatre dates historiques récentes occupent des colonnes dans la grille"
+        },
+        {
+          "keyword": "And",
+          "text": "les autres ventes restent accessibles dans la fiche détaillée du lot avec une indication de leur présence sur sa ligne"
+        },
+        {
+          "keyword": "And",
+          "text": "les textes trop longs de la grille sont abrégés sans modifier les chiffres enregistrés dans la fiche détaillée"
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

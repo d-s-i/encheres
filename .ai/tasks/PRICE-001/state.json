@@ -1,30 +1,145 @@
 {
   "id": "PRICE-001",
-  "title": "Comparer les prix de montres équivalentes sur cinq ans et sur Chrono24",
-  "status": "ready_for_specification",
-  "current_role": "specifier",
+  "title": "Comparer les adjudications Crédit Municipal et les annonces Chrono24 d'un échantillon de trois pages",
+  "status": "validated_with_shared_parser_quality_refresh_pending",
+  "current_role": null,
   "current_feature": null,
   "roles": {
     "init-task": "completed",
-    "specifier": "not_run",
-    "coder": "not_run",
-    "cleaner": "not_run",
-    "architect": "not_run",
-    "hardener": "not_run",
-    "qa": "not_run"
+    "specifier": "completed",
+    "coder": "completed",
+    "cleaner": "completed",
+    "architect": "completed",
+    "hardener": "completed",
+    "qa": "completed"
   },
   "checks": {
-    "gherkin": "not_run",
-    "crap": "not_run",
-    "dry": "not_run",
-    "mutation": "not_run",
-    "qa": "not_run"
+    "gherkin": "passed",
+    "crap": "stale_after_shared_reference_fix",
+    "dry": "stale_after_shared_reference_fix",
+    "mutation": "stale_after_qa_cli_and_shared_watch_changes",
+    "qa": "passed_before_shared_reference_fix_refresh_pending"
   },
   "open_questions": [
-    "La couverture des adjudications Crédit municipal sur cinq ans et l'accès aux prix de ventes réalisées Chrono24 sont-ils vérifiables ?",
-    "Vérifier les taux et conditions applicables à chaque vente historique pour calculer le coût d'achat en ligne.",
-    "Si les prix de ventes réalisées Chrono24 sont indisponibles, l'absence de moyenne convient-elle ou faut-il une autre source de ventes réalisées ?"
+    "API Packet : l'utilisateur accepte l'échantillon des trois premières pages triées par pertinence, pas le minimum global ; afficher nombre de pages/annonces analysées et vérifier le vendeur FR. HTTP 426 intermittent constaté le 15/11/2026, cause non vérifiée.",
+    "Authentifier les conditions historiques de chaque vente : les CGV des pages ?print=1 sont identiques pour 2020-2026 et ne prouvent pas les taux applicables alors. Le catalogue daté du 15/06/2024 démontre 18 % sans majoration live pour cette vente.",
+    "Préciser avec l'utilisateur si l'exclusion prudente des ventes dont les frais historiques restent inconnus réduit substantiellement l'échantillon réel.",
+    "PRICE-001-F02 : plafond théorique arrondi au centime inférieur, sans adaptation aux paliers d'enchère ; vérifier le pas d'enchère avant toute mise réelle.",
+    "Lot 343 PANERAI PAM01028 (05/12/2026) : essai corrigé marque + modèle, 3 pages/150 annonces sur 2 545 résultats ; trois vendeurs FR vérifiés, moyenne 3 749,67 € et plafond théorique 3 145,69 €. La représentativité au-delà des trois premières pages n'est pas garantie."
   ],
-  "features": {},
-  "updated_at": "2026-11-01T23:54:35Z"
+  "pending_request": {
+    "label": "prix à ne pas dépasser",
+    "status": "validated",
+    "feature_id": "PRICE-001-F02"
+  },
+  "features": {
+    "PRICE-001-F01": {
+      "status": "completed",
+      "file": "features/comparer-prix-montres.feature"
+    },
+    "PRICE-001-F02": {
+      "status": "completed",
+      "file": "features/plafond-enchere-hors-frais.feature",
+      "qa": "qa/plafond-enchere.md"
+    }
+  },
+  "gherkin_validation": {
+    "parse": "passed",
+    "scenarios": 9,
+    "PRICE-001-F01": {
+      "parse": "passed",
+      "scenarios": 9,
+      "dry": "reviewed_5_advisory_findings",
+      "dry_report": "acceptance/comparer-prix-montres-dry-report.json"
+    },
+    "PRICE-001-F02": {
+      "parse": "passed",
+      "scenarios": 6,
+      "dry": "reviewed_4_advisory_findings",
+      "ir": "acceptance/plafond-enchere-hors-frais.json",
+      "dry_report": "acceptance/plafond-enchere-hors-frais-dry-report.json"
+    }
+  },
+  "research": "research/faisabilite-2026-11-11.md",
+  "new_model_trial": "research/essai-monaco-2026-11-15.md",
+  "qa_procedure": "qa/procedure.md",
+  "cleaner_report": "checks/cleaner.md",
+  "architect_report": "checks/architect.md",
+  "hardener_report": "checks/hardener.md",
+  "qa_report": "qa/report.md",
+  "qa_result": {
+    "status": "PASS",
+    "scenarios": 15,
+    "passed": 15,
+    "failed": 0,
+    "environment_error": 0,
+    "not_run": 0,
+    "preflight": "passed_12_public_captures",
+    "command": "node .ai/tasks/PRICE-001/qa/scripts/run.mjs",
+    "live_checks": "qa/live-check.json",
+    "result": "qa/result.json"
+  },
+  "mutation_report": {
+    "status": "stale_after_qa_cli_and_shared_watch_changes",
+    "snapshots": ".metrics/mutate/",
+    "total": 393,
+    "killed": 346,
+    "survived": 47,
+    "uncovered": 0,
+    "timeouts": 0,
+    "score_percent": 88.0,
+    "classification": "checks/hardener.md"
+  },
+  "architecture_check": {
+    "status": "passed",
+    "command": "pnpm test",
+    "file": "test/architecture.test.mjs",
+    "cases": 2
+  },
+  "property_test": {
+    "status": "passed",
+    "command": "pnpm property",
+    "file": "test/property/bid-ceiling.test.mjs",
+    "cases": 1
+  },
+  "crap_analysis": {
+    "status": "stale_after_shared_reference_fix",
+    "report": ".metrics/crap.edn",
+    "coverage": "coverage/lcov.info",
+    "worst_score": 6.0
+  },
+  "dry_analysis": {
+    "status": "stale_after_shared_reference_fix",
+    "report": ".metrics/dry.edn",
+    "candidate_pairs": 0
+  },
+  "mutation_site_scan": {
+    "status": "stale_after_shared_reference_fix",
+    "sites_by_file": {
+      "src/prices.mjs": 8,
+      "src/price-ceiling.mjs": 21,
+      "src/price-matching.mjs": 33,
+      "src/price-selection.mjs": 71,
+      "src/price-credit.mjs": 32,
+      "src/price-packet.mjs": 88,
+      "src/price-fees.mjs": 81,
+      "bin/comparer-prix.mjs": 45,
+      "src/watch.mjs": 14,
+      "scripts/generate-acceptance.mjs": 0
+    }
+  },
+  "validation_decision": {
+    "status": "accepted_by_user",
+    "scope": "PRICE-001_F01_F02_after_external_qa",
+    "note": "L'utilisateur valide PRICE-001 et accepte de ne pas attendre le rafraîchissement du contrôle de mutation du CLI. QA 15/15 PASS ; le snapshot de mutation bin/comparer-prix.mjs reste périmé et son ancien score ne doit pas être présenté comme actuel.",
+    "remaining_check": "refresh_mutation_bin_comparer_prix"
+  },
+  "human_approval": {
+    "scope": "functional_behavior_F01_F02",
+    "status": "approved",
+    "note": "L'utilisateur valide le fonctionnement des trois premières pages Chrono24 et du plafond hors frais après l'essai réel sur le lot 343. Cela ne vaut pas validation QA externe ni contrôles de qualité."
+  },
+  "shared_reference_fix": "src/watch.mjs: espaces internes normalisés dans les références attestées, séparation du texte voisin ; tests unitaires/acceptation passés mais QA externe et métriques antérieures non rafraîchies",
+  "shared_matching_fix": "src/price-matching.mjs : 'sous- compteurs' dans le lot Monaco 2022 reconnu comme indice de chronographe ; QA APP-001-S12 passée après correctif, QA externe PRICE-001 non rafraîchie",
+  "updated_at": "2026-11-18T21:09:17Z"
 }

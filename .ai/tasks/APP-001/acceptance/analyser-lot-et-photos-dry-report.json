@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "feature_name": "APP-001-F01 Analyser un lot de montre et présenter un tableau sourcé avec photos",
+  "summary": {
+    "step_occurrences": 42,
+    "unique_steps": 41,
+    "findings": 0
+  },
+  "findings": []
+}

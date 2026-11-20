@@ -1,0 +1,227 @@
+{
+  "id": "QA-APP-001-S12",
+  "status": "FAIL_before_fix",
+  "initial": "fresh isolated app; 2026-11-15, 2 saved lots 268/343; public captured 2022 Monaco lot302 with \"deux sous- compteurs\"",
+  "expected": "historical column 2022-12-10 for lot268",
+  "observed": "no 2022-12-10 column; only 2023-06-17 and 2024-06-15",
+  "classification": "product: Monaco matching did not allow a space after sous-",
+  "error": "AssertionError [ERR_ASSERTION]: 2022-12-10\n\n0 !== 2\n\n    at Object.run (file:///home/anon/Documents/Workspace/ench%C3%A8res/.ai/tasks/APP-001/qa/scripts/run.mjs:97:69)\n    at async scenarioRun (file:///home/anon/Documents/Workspace/ench%C3%A8res/.ai/tasks/APP-001/qa/scripts/run.mjs:139:3)\n    at async file:///home/anon/Documents/Workspace/ench%C3%A8res/.ai/tasks/APP-001/qa/scripts/run.mjs:160:18",
+  "evidence": {
+    "config": {
+      "mode": "grid",
+      "asOf": "2026-11-15",
+      "blocked": false
+    },
+    "events": [
+      {
+        "url": "http://127.0.0.1:44641/",
+        "text": "Études de montres\nÉtudier un lot de montre\nLien de la vente Numéro de lot Lancer l'étude\nÉtudes sauvegardées\n\nVentes datées : « Adj. » = adjudication hors frais ; « coût » = coût en ligne frais compris, lorsqu'il est vérifié.\n\nVente\tLot\tMarque\tType\tBoîtes\tBracelet\tEstimation (mise à prix non attestée)\tPrix Chrono24 moyen — prix demandés hors port\tMoyenne Crédit Municipal — coûts en ligne vérifiés\tVente du 17/06/2023\tVente du 15/06/2024\tObservations\tPrix à ne pas dépasser hors frais\tActions\n261205000\n2026-11-15\tLot 268 — TAG HEUER Monaco\tTAG HEUER\tMonaco\tabsent\tcuir\t1 500 € à 2 000 €\t4 345 € (2 annonces, moyenne partielle)\nLiens : annonce 1 · annonce 2\n\t4 366 € (1 vente avec frais vérifiés)\t—\t\nAdj. 3 700 €\ncoût 4 366 €\n\treference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent) ; reference : CAW2111.FC6183 (lot : CAW2111) ; box : présent (lot : absent) ; Chrono24 : échantillon des trois premières pages\t3 645,13 € hors frais\t\nSupprimer la ligne\n\n261205000\n2026-11-15\tLot 343 — PANERAI Luminor Marina\tPANERAI\tLuminor Marina\tprésent\tacier\t2 000 € à 3 000 €\tindisponible\tindisponible\t\nAdj. 4 200 €\ncoût non vérifié\n\t—\treference : OP6816 (lot : PAM01028) ; bracelet : caoutchouc (lot : acier) ; box : absent (lot : présent)\tindisponible\t\nSupprimer la ligne",
+        "html": "<html lang=\"fr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Études de montres</title><link rel=\"stylesheet\" href=\"/app.css\"><script defer=\"\" src=\"/app.js\"></script></head><body><main><nav><a href=\"/\">Études de montres</a></nav><h1>Étudier un lot de montre</h1><form method=\"post\" action=\"/studies\"><label>Lien de la vente <input type=\"url\" name=\"saleUrl\" required=\"\"></label><label>Numéro de lot <input type=\"number\" name=\"number\" min=\"1\" step=\"1\" required=\"\"></label><button type=\"submit\">Lancer l'étude</button></form><h2>Études sauvegardées</h2><p class=\"grid-legend\">Ventes datées : « Adj. » = adjudication hors frais ; « coût » = coût en ligne frais compris, lorsqu'il est vérifié.</p><div class=\"table-wrap\"><table aria-label=\"Tableau des études\"><thead><tr><th>Vente</th><th>Lot</th><th>Marque</th><th>Type</th><th>Boîtes</th><th>Bracelet</th><th>Estimation (mise à prix non attestée)</th><th>Prix Chrono24 moyen — prix demandés hors port</th><th>Moyenne Crédit Municipal — coûts en ligne vérifiés</th><th>Vente du 17/06/2023</th><th>Vente du 15/06/2024</th><th>Observations</th><th>Prix à ne pas dépasser hors frais</th><th>Actions</th></tr></thead><tbody><tr data-lot=\"268\" data-sale=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\"><td title=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\">261205000<br>2026-11-15</td><td><a href=\"/studies/09ac8b97122e32ab0500254f58615dfe832210547aced2f77ae9b37e4e8bc820\">Lot 268 — TAG HEUER Monaco</a></td><td>TAG HEUER</td><td>Monaco</td><td>absent</td><td>cuir</td><td>1 500 € à 2 000 €</td><td data-column=\"chrono24\">4 345 € (2 annonces, moyenne partielle)<div class=\"offer-links\">Liens : <a href=\"https://www.chrono24.fr/tagheuer/tag-heuer-monaco-calibre-12--id48909624.htm?SETLANG=fr_FR&amp;SETCURR=EUR\" target=\"_blank\" rel=\"noopener noreferrer\">annonce 1</a> · <a href=\"https://www.chrono24.fr/tagheuer/monaco-chronographe-automatique-39mm--id48704080.htm?SETLANG=fr_FR&amp;SETCURR=EUR\" target=\"_blank\" rel=\"noopener noreferrer\">annonce 2</a></div></td><td>4 366 € (1 vente avec frais vérifiés)</td><td data-date=\"2023-06-17\">—</td><td data-date=\"2024-06-15\"><div class=\"historical-value\"><a href=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/\" target=\"_blank\" rel=\"noopener noreferrer\">Adj. 3 700 €</a><br><small>coût 4 366 €</small></div></td><td><span class=\"grid-clamp\">reference : CW2113-0 (lot : CAW2111) ; box : non renseigné (lot : absent) ; reference : CAW2111.FC6183 (lot : CAW2111) ; box : présent (lot : absent) ; Chrono24 : échantillon des trois premières pages</span></td><td>3 645,13 € hors frais</td><td><form method=\"post\" action=\"/studies/09ac8b97122e32ab0500254f58615dfe832210547aced2f77ae9b37e4e8bc820/delete\"><button type=\"submit\">Supprimer la ligne</button></form></td></tr><tr data-lot=\"343\" data-sale=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\"><td title=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\">261205000<br>2026-11-15</td><td><a href=\"/studies/3e3ca69b0be99b22fa610bf6a0337ce5315215419a87b60f7b46f37331175521\">Lot 343 — PANERAI Luminor Marina</a></td><td>PANERAI</td><td>Luminor Marina</td><td>présent</td><td>acier</td><td>2 000 € à 3 000 €</td><td data-column=\"chrono24\">indisponible</td><td>indisponible</td><td data-date=\"2023-06-17\"><div class=\"historical-value\"><a href=\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/230617000/panerai-luminor-marina-montre-de-plongee-de-form/\" target=\"_blank\" rel=\"noopener noreferrer\">Adj. 4 200 €</a><br><small>coût non vérifié</small></div></td><td data-date=\"2024-06-15\">—</td><td><span class=\"grid-clamp\">reference : OP6816 (lot : PAM01028) ; bracelet : caoutchouc (lot : acier) ; box : absent (lot : présent)</span></td><td>indisponible</td><td><form method=\"post\" action=\"/studies/3e3ca69b0be99b22fa610bf6a0337ce5315215419a87b60f7b46f37331175521/delete\"><button type=\"submit\">Supprimer la ligne</button></form></td></tr></tbody></table></div></main></body></html>",
+        "width": 1357,
+        "scrollWidth": 1357
+      }
+    ],
+    "requests": "{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=TAG+HEUER+Monaco&lot-state=lot-sold&sale-date=sale-date-all\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/221210000/tag-heuer-monaco-montre-dhomme-carree-referenc/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/\",\"status\":200}\n{\"url\":\"https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=1&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=2&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/search?query=TAG+HEUER+Monaco&limit=50&page=3&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/product?id=48909624&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/product?id=48704080&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=3\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=4\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/panerai-luminor-marina-montre-bracelet-de-forme/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/rechercher-un-lot/?search=PANERAI+Luminor+Marina&lot-state=lot-sold&sale-date=sale-date-all\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/230617000/panerai-luminor-marina-montre-de-plongee-de-form/\",\"status\":200}\n{\"url\":\"https://api.pckt.sh/v1/chrono24/search?query=PANERAI+Luminor+Marina&limit=50&page=1&currency=EUR&language=fr_FR\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/panerai-luminor-marina-montre-bracelet-de-forme/\",\"status\":200}\n{\"url\":\"https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/230617000/panerai-luminor-marina-montre-de-plongee-de-form/\",\"status\":200}\n",
+    "images": [
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-1.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-2.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-3.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-4.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-5.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-6.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-7.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-8.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-9.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/268-10.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-1.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-2.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-3.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-4.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-5.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-6.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-7.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-8.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-9.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-10.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/240615000/images/246-11.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-1.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-2.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-3.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-4.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-5.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-6.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-7.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-8.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-9.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-10.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-11.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-12.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-13.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-14.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-15.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-16.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-17.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-18.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-19.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/261205000/images/343-20.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/163839-536598397-c109c73f0766a69d8a3b8560dd2714cf419.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-45769430-0296e2a5307c2a3497587a1c2dea1df0419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-294077042-a406dac9df71a1250f424c09d1726550419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211928-746778410-7b8e0b3e38c530f0930269a81ae16acb419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-144847529-ecb9df5a8fcc3001115aca4377c5126f419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-85252024-f3b9668e704a458cd72313996db2f4d7419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-50796927-800714a0a991d805c79270ab303e8064419.jpg",
+        "status": 404
+      },
+      {
+        "url": "https://www.creditmunicipal.fr/rs:fit:200:200/gravity:sm/ar:1/app/uploads/sales/230617000/images/211927-245672803-dc0a326983b7f59c7efe84413f4ce332419.jpg",
+        "status": 404
+      }
+    ],
+    "serverOutput": "Application montres : http://127.0.0.1:44641/\n",
+    "command": "node --import=/home/anon/Documents/Workspace/enchères/.ai/tasks/APP-001/qa/scripts/replay.mjs /home/anon/Documents/Workspace/enchères/bin/app.mjs + Chromium"
+  },
+  "fix": "src/price-matching.mjs regex allows sous- followed by whitespace; test/prices.test.mjs added"
+}

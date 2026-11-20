@@ -1,0 +1,77 @@
+{
+  "captured_at": "2026-11-15T23:53:38.800Z",
+  "sources": {
+    "sale2021": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/",
+      "file": "sale2021.html",
+      "bytes": 260960,
+      "sha256": "bc0dcac33b6e5727a87d2df94d3856a866bd45d40cdd06ca97687b203f402cd3"
+    },
+    "lot318": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/tag-heuer-carrera-montre-dhomme-ronde-en-acier-3/",
+      "file": "lot318.html",
+      "bytes": 183649,
+      "sha256": "c7d6032b95bc438511d375a008c76de3064b9e2c5eb1ae6e3b33471531457421"
+    },
+    "lot323": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/210605000/chopard-alfa-romeo-montre-dhomme-en-acier-avec/",
+      "file": "lot323.html",
+      "bytes": 205236,
+      "sha256": "cadf62cfe3cfe050a5e83fa4068e496ce69a1a7aabb441938dc0d54bb84f3be1"
+    },
+    "lot288": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-carrera-montre-dhomme-ronde-chronogr/",
+      "file": "lot288.html",
+      "bytes": 195195,
+      "sha256": "20df5890b30788a8dd36ca440ac8de9ffa5ee2d9f3cdc816d54d185158e0f46f"
+    },
+    "lot246": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/240615000/tag-heuer-monaco-montre-dhomme-de-forme-carree/",
+      "file": "lot246.html",
+      "bytes": 194784,
+      "sha256": "b4dcc6942f6ff60cf0598c48ef9d014e3d7906948ae70b18f5ead3899463927c"
+    },
+    "lot368": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/220611000/tag-heuer-carrera-montre-dhomme-ronde-chronogra/",
+      "file": "lot368.html",
+      "bytes": 191394,
+      "sha256": "cb86e84ff0ef3e7db8d046c7ae11a29ae9212e99b59bf7065e239ba0ef6c1e0f"
+    },
+    "sale2026": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/",
+      "file": "sale2026.html",
+      "bytes": 250472,
+      "sha256": "2a504d760d6fc23047681be30049728e7e3f54175092a4bebe08b5f2728b4b37"
+    },
+    "sale2026page2": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=2",
+      "file": "sale2026page2.html",
+      "bytes": 200803,
+      "sha256": "11eff93fc8136e4b77ba33f06298565833914cbf90542cbdfb66b0c79678c1f5"
+    },
+    "sale2026page3": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/?_paged=3",
+      "file": "sale2026page3.html",
+      "bytes": 199552,
+      "sha256": "21b5c43e24387d6d6b3fd6bf38aa5ddfb875c98bb0ca71ca0a8d5ccf864230a6"
+    },
+    "lot268": {
+      "url": "https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tag-heuer-monaco-montre-bracelet-de-forme-carre/",
+      "file": "lot268.html",
+      "bytes": 194916,
+      "sha256": "0e227f87b8cb45047222e4f5f3b55bfaded9ab0a280f97e8cd01bbde447ac23c"
+    },
+    "pdf2024": {
+      "url": "https://serret-portier-expertises.com/wp-content/uploads/2021/05/Catalogue-Bijoux-Montres-juin2024_bdef_web.pdf",
+      "file": "pdf2024.pdf",
+      "bytes": 2980876,
+      "sha256": "981bdf022ce3fe6ead32e7bc45445a003c1a528354205f8b7058a8e9c2831147"
+    },
+    "pdf2026": {
+      "url": "https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf",
+      "file": "pdf2026.pdf",
+      "bytes": 2389986,
+      "sha256": "b7709fe7d0003c302d3d100d681f031789b846b0a7507693cf1a628aae3d2d24"
+    }
+  }
+}

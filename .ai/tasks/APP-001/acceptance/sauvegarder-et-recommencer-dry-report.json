@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "feature_name": "APP-001-F02 Retrouver, bloquer et supprimer les analyses de lots",
+  "summary": {
+    "step_occurrences": 25,
+    "unique_steps": 23,
+    "findings": 0
+  },
+  "findings": []
+}
