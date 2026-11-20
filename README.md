@@ -50,9 +50,9 @@ Vercel Hobby et Blob Hobby ont des quotas gratuits ; chaque ouverture de la gril
 ## Vérification
 
 ```sh
-pnpm test                    # tests unitaires hors réseau
-pnpm acceptance              # LOT-001, PRICE-001 et APP-001 F01/F02/F03 : génération et tests d'acceptation hors réseau
-pnpm property                # invariant du plafond d'enchère sur plus de 7 000 combinaisons, hors réseau
+pnpm test                    # tests unitaires hors réseau.
+pnpm acceptance              # LOT-001, PRICE-001 et APP-001 F01/F02/F03 : génération et tests d'acceptation hors réseau.
+pnpm property                # invariant du plafond d'enchère sur plus de 7 000 combinaisons, hors réseau.
 ```
 
 L'acceptation lit les features LOT-001, PRICE-001 (F01 et F02) et APP-001 (F01, F02 et F03) via le `parse-gherkin` installé et génère leurs tests sous `.ai/tasks/*/acceptance/generated/`. Les handlers exercent la même commande utilisateur avec des extraits de catalogues vérifiés et un PDF de test reproductible. Les procédures de QA publique distinctes sont `.ai/tasks/LOT-001/qa/procedure.md` et `.ai/tasks/PRICE-001/qa/procedure.md` (F02 : `qa/plafond-enchere.md`). La QA PRICE-001 est exécutable via `node .ai/tasks/PRICE-001/qa/scripts/run.mjs` après préparation des captures par `node .ai/tasks/PRICE-001/qa/scripts/capture.mjs` ; voir `qa/README.md` pour les oracles, le replay HTTPS et les contrôles live. Les vérifications ponctuelles sur les pages réelles ne remplacent pas ces tests reproductibles.
