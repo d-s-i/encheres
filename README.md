@@ -62,3 +62,5 @@ pnpm property                # invariant du plafond d'enchère sur plus de 7 000
 L'acceptation lit les features LOT-001, PRICE-001 (F01 et F02), APP-001 (F01, F02 et F03) et IMPORT-001 (F01) via le `parse-gherkin` installé et génère leurs tests sous `.ai/tasks/*/acceptance/generated/`. Les handlers exercent la même commande utilisateur avec des extraits de catalogues vérifiés et un PDF de test reproductible. Les procédures de QA publique distinctes sont `.ai/tasks/LOT-001/qa/procedure.md` et `.ai/tasks/PRICE-001/qa/procedure.md` (F02 : `qa/plafond-enchere.md`). La QA PRICE-001 est exécutable via `node .ai/tasks/PRICE-001/qa/scripts/run.mjs` après préparation des captures par `node .ai/tasks/PRICE-001/qa/scripts/capture.mjs` ; voir `qa/README.md` pour les oracles, le replay HTTPS et les contrôles live. Les vérifications ponctuelles sur les pages réelles ne remplacent pas ces tests reproductibles.
 
 Les sources HTTPS sont limitées au domaine du Crédit Municipal de Paris ; leur disponibilité et leur structure peuvent changer. Les liens de lots sont vérifiés pour appartenir à la vente demandée.
+
+a
