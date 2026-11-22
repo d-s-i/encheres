@@ -12,8 +12,13 @@ function watchName(title) {
 }
 
 function watchReference(description) {
-  const match = text(description).match(/\bR[ée]f[ée]rence\s*:?\s*((?:[A-Z]{2,5}\s+\d{3,6}|[\p{L}\d-]+)(?:\.(?:[A-Z]{1,4}\d{1,6}|\d{1,5}))*)/iu);
-  return match?.[1]?.replace(/(?<=\p{L})\s+(?=\d)/u, '') ?? null;
+  const value = text(description);
+  const match = value.match(/\bR[ée]f[ée]rence\s*:?\s*((?:[A-Z]{2,5}\s+\d{3,6}|[\p{L}\d-]+)(?:\/[\d]+)?(?:\.(?:[A-Z]{1,4}\d{1,6}|\d{1,5}))*)/iu);
+  if (!match) return null;
+  // A reference attached to the bracelet (e.g. Oyster 78350) is not the watch reference.
+  const sentence = value.slice(0, match.index).split(/[.!?]/u).at(-1);
+  if (/\bbracelet\b/iu.test(sentence)) return null;
+  return match[1].replace(/(?<=\p{L})\s+(?=\d)/u, '');
 }
 
 function watchBracelet(description) {

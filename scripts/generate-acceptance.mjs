@@ -11,6 +11,7 @@ const features = [
   {id:'APP-001',name:'analyser-lot-et-photos',steps:'app-acceptance-steps.mjs'},
   {id:'APP-001',name:'sauvegarder-et-recommencer',steps:'app-save-acceptance-steps.mjs'},
   {id:'APP-001',name:'tableau-global-excel',steps:'app-grid-acceptance-steps.mjs'},
+  {id:'IMPORT-001',name:'importer-favoris-vente',steps:'favorite-acceptance-steps.mjs'},
 ];
 for(const feature of features) {
   const task = resolve(root, '.ai/tasks', feature.id);

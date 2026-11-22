@@ -24,7 +24,7 @@ async function start(ctx){
   return compareWatch(w,{asOf,cmSearch:async()=>[historic26],feeLookup:async()=>({buyerPercent:18,livePercent:0,source:dated}),offerSearch:async()=>ctx.prices.map((price,i)=>offer(i+1,price)),targetFeeLookup:async()=>({buyerPercent:18,livePercent:1.2,source:catalogue})});
  };
  const images=async(w,r)=>({target:[w.saleUrl===sale26?photo26:secondPhoto],credit:{[credit]:['https://www.creditmunicipal.fr/app/uploads/sales/240615000/images/246-1.jpg']},offers:Object.fromEntries(r.chrono.offers.map(o=>[o.url,[`https://img.chrono24.com/images/uhren/${o.id}.jpg`]]))});
- ctx.server=await new Promise(resolve=>{const s=createServer(createApplication({dataDir:ctx.dir,study,compare,images,asOf:()=>ctx.asOf}));s.listen(0,'127.0.0.1',()=>resolve(s))});
+ ctx.server=await new Promise(resolve=>{const s=createServer(createApplication({dataDir:ctx.dir,study,compare,images,listSales:async()=>[],asOf:()=>ctx.asOf}));s.listen(0,'127.0.0.1',()=>resolve(s))});
  ctx.base=`http://127.0.0.1:${ctx.server.address().port}`;
 }
 async function restart(ctx){await new Promise(resolve=>ctx.server.close(resolve));await start(ctx)}

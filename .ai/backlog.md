@@ -1,5 +1,9 @@
 # Backlog
 
+## Needs clarification
+
+- [ ] IMPORT-001 — Importer les lots favoris Interencheres d’une vente dans l’application sans lancer d’étude.
+
 ## Validated — APP-001 (mutation deferred)
 
 - [x] APP-001-F01 — Formulaire vente + lot, tableau sauvegardé sourcé et photos des comparables.

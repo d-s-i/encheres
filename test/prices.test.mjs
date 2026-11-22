@@ -119,6 +119,50 @@ test('one matching offer yields partial; no offer yields unavailable; inaccessib
 });
 
 function cmCard(id,number,description,price){const url=`https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/${id}/tag-heuer-carrera/`;return {url,card:`<div class="card--lot"><h2 class="card__title"><a href="${url}">TAG HEUER Carrera</a></h2></div>`,detail:`<div class="lot__number">Lot n°${number}</div><h1 class="lot__title">TAG HEUER, Carrera.</h1><div class="lot__prices">Adjugé à ${price} €* le 15 juin 20${id.slice(0,2)}</div><div class="lot__description"><p>${description}</p></div>`};}
+test('Prince Oysterdate searches both spellings and retains only the recent Prince Oyster Date sale',async()=>{
+ const watch=extractWatch({number:221,title:'TUDOR, Prince Oysterdate.',description:'Référence 9101/0. Bracelet en acier. Sans écrin ni papiers.',source:'https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/tudor/' });
+ const base='https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/';
+ const recent=`${base}241207000/tudor-prince-oyster-date/`,old=`${base}200926000/tudor-prince-oysterdate/`,princess=`${base}260918000/tudor-princess-oysterdate/`;
+ const card=url=>`<div class="card--lot"><h2 class="card__title"><a href="${url}">Lot</a></h2></div>`;
+ const detail=(number,title,year,price)=>`<div class="lot__number">Lot n°${number}</div><h1 class="lot__title">${title}</h1><div class="lot__prices">Adjugé à ${price} €* le 7 décembre ${year}</div><div class="lot__description"><p>Montre automatique en acier à guichet date, bracelet Oyster. Sans écrin ni papiers.</p></div>`;
+ const calls=[];
+ const fetchImpl=async input=>{
+   const url=new URL(input);calls.push(url.toString());
+   const html=url.pathname.includes('/rechercher-un-lot/')
+     ? url.searchParams.get('search')==='TUDOR Prince' ? card(recent)+card(old) : card(old)+card(princess)
+     : url.toString()===recent ? detail(376,'TUDOR, Prince Oyster Date',2024,'1 200')
+     : url.toString()===old ? detail(455,'TUDOR, Prince Oysterdate.',2020,'1 800')
+     : detail(343,'TUDOR, Princess Oysterdate.',2026,'440');
+   return {ok:true,url:url.toString(),text:async()=>html};
+ };
+ assert.equal(watch.reference,'9101/0');
+ assert.equal(extractWatch({number:376,title:'TUDOR, Prince Oyster Date',description:'Boîtier acier. Bracelet Oyster ROLEX avec boucle signée, référence 78350. Sans écrin.',source:recent}).reference,null);
+ const sales=await searchCreditMunicipal(watch,{fetchImpl});
+ assert.deepEqual(calls.filter(u=>u.includes('rechercher-un-lot')).map(u=>new URL(u).searchParams.get('search')),['TUDOR Prince Oysterdate','TUDOR Prince']);
+ assert.equal(calls.filter(u=>u===old).length,1);
+ const selected=selectHistoricalSales(watch,sales,'2026-11-21',()=>null);
+ assert.deepEqual(selected.sales.map(s=>[s.number,s.date,s.hammerPrice,s.url]),[[376,'2024-12-07',1200,recent]]);
+ assert.equal(selected.average,null); // Historical fees remain unverified.
+});
+
+test('multi-word model discovery backs off generically, but does not admit other models',async()=>{
+ const watch=extractWatch({number:12,title:'OMEGA, Seamaster Aqua Terra.',description:'Montre acier automatique.',source:'https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/261205000/omega/'});
+ const root='https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des-ventes/ventes-passees/241207000/';
+ const correct=root+'omega-aquaterra/',wrong=root+'omega-seamaster-diver/';
+ const card=url=>`<div class="card--lot"><h2 class="card__title"><a href="${url}">Lot</a></h2></div>`;
+ const calls=[];
+ const fetchImpl=async input=>{
+   const url=new URL(input);calls.push(url);
+   const html=url.pathname.includes('/rechercher-un-lot/')
+     ? url.searchParams.get('search')==='OMEGA Seamaster Aqua' ? card(correct)+card(wrong) : '<main>Aucun résultat</main>'
+     : `<div class="lot__number">Lot n°20</div><h1 class="lot__title">OMEGA, ${url.toString()===correct?'Seamaster AquaTerra':'Seamaster Diver'}.</h1><div class="lot__prices">Adjugé à 1 000 €* le 7 décembre 2024</div><div class="lot__description"><p>Montre en acier automatique.</p></div>`;
+   return {ok:true,url:url.toString(),text:async()=>html};
+ };
+ const sales=await searchCreditMunicipal(watch,{fetchImpl});
+ assert.deepEqual(calls.filter(u=>u.pathname.includes('rechercher-un-lot')).map(u=>u.searchParams.get('search')),['OMEGA Seamaster Aqua Terra','OMEGA Seamaster Aqua']);
+ assert.deepEqual(selectHistoricalSales(watch,sales,'2026-11-21',()=>null).sales.map(s=>s.url),[correct]);
+});
+
 test('Credit Municipal searches exactly the allowed last page and never starts at page zero',async()=>{
  const card=cmCard('240615000',288,'TAG HEUER Carrera chronographe. Calibre 16. Référence : CV2010-4. Bracelet acier.','1 900');
  const requests=[];

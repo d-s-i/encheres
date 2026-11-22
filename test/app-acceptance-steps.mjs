@@ -29,7 +29,7 @@ async function launch(ctx,number=ctx.number??268,sale=ctx.sale??sale26){
  const study=async({saleUrl,numbers})=>{assert.equal(saleUrl,sale);assert.deepEqual(numbers,[number]);return {watches:number===99999?[]:[ctx.watch??watch26],missing:number===99999?[99999]:[]}};
  const compare=async(w,{asOf})=>compareWatch(w,{asOf,cmSearch:async()=>ctx.historical??[historic26],feeLookup:async s=>ctx.unknownFees?null:s.date==='2024-06-15'?{buyerPercent:18,livePercent:0,source:dated}:null,offerSearch:async()=>{if(ctx.blocked)throw Error('Packet inaccessible (426)');return ctx.offers??[]},targetFeeLookup:async()=>({buyerPercent:18,livePercent:1.2,source:catalogue})});
  const images=async(w,r)=>({target:ctx.noPhoto?[]:[w.source===target?photo26:photo21],credit:Object.fromEntries(r.credit.sales.map(s=>[s.url,ctx.noPhoto&&s.url===credit?[]:[s.url===other?photo22:photo24]])),offers:Object.fromEntries(r.chrono.offers.map(o=>[o.url,ctx.noPhoto&&o.id===1?[]:[pic(o.id)]]))});
- const server=await new Promise(resolve=>{const s=createServer(createApplication({dataDir:dir,study,compare,images,asOf:()=>ctx.asOf??'2026-11-15'}));s.listen(0,'127.0.0.1',()=>resolve(s))});
+ const server=await new Promise(resolve=>{const s=createServer(createApplication({dataDir:dir,study,compare,images,listSales:async()=>[],asOf:()=>ctx.asOf??'2026-11-15'}));s.listen(0,'127.0.0.1',()=>resolve(s))});
  const base=`http://127.0.0.1:${server.address().port}`;
  try{
   const home=await(await fetch(base)).text();assert.match(home,/name="saleUrl"/);assert.match(home,/name="number"/);

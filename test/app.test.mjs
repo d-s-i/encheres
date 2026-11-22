@@ -13,9 +13,9 @@ const historic='https://www.creditmunicipal.fr/ventes-aux-encheres/catalogue-des
 const offer='https://www.chrono24.fr/tagheuer/monaco--id1.htm';
 const watch={number:268,brand:'TAG HEUER',model:'Monaco',box:'absent',bracelet:'cuir',reference:'CAW2111',estimation:[1000,2000],source:target,saleUrl:sale};
 const comparison={lot:268,brand:'TAG HEUER',model:'Monaco',reference:'CAW2111',asOf:'2026-11-15',credit:{status:'available',average:4366,count:1,sales:[{number:246,date:'2024-06-15',reference:'CW2113-0',hammerPrice:3700,onlineCost:4366,buyerPercent:18,livePercent:0,feeSource:'https://example.org/dated.pdf',url:historic,differences:{reference:'CW2113-0 (lot : CAW2111)'}}]},chrono:{status:'partial',average:4345,count:2,offers:[{id:1,price:4100,currency:'EUR',url:offer,sellerCountry:'FR',condition:'Très bon',differences:{bracelet:'acier (lot : cuir)'}},{id:2,price:4590,currency:'EUR',url:'https://www.chrono24.fr/tagheuer/monaco--id2.htm',sellerCountry:'FR',differences:{}}],sample:{inspectedPages:3,inspectedListings:150,totalListings:1195,totalPages:24}},ceiling:{status:'partial',amount:3645.13,sourceCount:2,sourceAverage:4345,buyerPercent:18,livePercent:1.2,feeSource:'https://www.creditmunicipal.fr/app/uploads/sales/261205000/generate-catalogue-261205000.pdf'}};
-async function withServer(fn,{study=async()=>({watches:[watch],missing:[]}),compare=async()=>comparison,images=async()=>({target:['https://www.creditmunicipal.fr/app/uploads/sales/261205000/images/268-1.jpg'],credit:{[historic]:['https://www.creditmunicipal.fr/app/uploads/sales/240615000/images/246-1.jpg']},offers:{[offer]:['https://img.chrono24.com/images/uhren/1.jpg']}}),asOf=()=>comparison.asOf}={}){
+async function withServer(fn,{study=async()=>({watches:[watch],missing:[]}),compare=async()=>comparison,images=async()=>({target:['https://www.creditmunicipal.fr/app/uploads/sales/261205000/images/268-1.jpg'],credit:{[historic]:['https://www.creditmunicipal.fr/app/uploads/sales/240615000/images/246-1.jpg']},offers:{[offer]:['https://img.chrono24.com/images/uhren/1.jpg']}}),asOf=()=>comparison.asOf,listSales=async()=>[]}={}){
  const dir=await mkdtemp(join(tmpdir(),'app001-unit-'));
- const handler=createApplication({dataDir:dir,study,compare,images,asOf});
+ const handler=createApplication({dataDir:dir,study,compare,images,asOf,listSales});
  const server=await new Promise(resolve=>{const s=createServer(handler);s.listen(0,'127.0.0.1',()=>resolve(s))});
  const base=`http://127.0.0.1:${server.address().port}`;
  try{await fn({base,dir,handler})}finally{await new Promise(resolve=>server.close(resolve));await rm(dir,{recursive:true,force:true})}
@@ -38,6 +38,19 @@ test('public form studies a lot, saves a sourced price table and puts the target
  });
 });
 
+test('study detail has a visible link back to the main menu',async()=>{
+ await withServer(async({base})=>{
+  const saved=await submit(base);assert.equal(saved.status,303);
+  const detail=load(await(await fetch(new URL(saved.headers.get('location'),base))).text());
+  const link=detail('a.back-home');
+  assert.equal(link.text().trim(),'← Retour au menu principal');
+  assert.equal(link.attr('href'),'/');
+  const home=await fetch(new URL(link.attr('href'),base));
+  assert.equal(home.status,200);
+  assert.match(await home.text(),/Études sauvegardées/);
+ });
+});
+
 test('unavailable external photo shows a fallback and saved table still opens without a new comparison',async()=>{
  let calls=0;
  await withServer(async({base})=>{
@@ -46,6 +59,16 @@ test('unavailable external photo shows a fallback and saved table still opens wi
   assert.match(page,/Image indisponible/);assert.match(page,/4 345/);assert.match(page,/class="comparable"/);
   assert.equal(calls,1);
  },{compare:async()=>{calls++;return comparison},images:async()=>({target:[],credit:{},offers:{}})});
+});
+
+test('sale link without trailing slash is accepted and uses the same study identity',async()=>{
+ let requested;
+ await withServer(async({base})=>{
+  const saved=await submit(base,268,sale.slice(0,-1));assert.equal(saved.status,303);
+  assert.equal(requested,sale);
+  const duplicate=await submit(base,268,sale);assert.equal(duplicate.status,409);
+  assert.match(await duplicate.text(),/Lot déjà analysé/);
+ },{study:async({saleUrl})=>{requested=saleUrl;return {watches:[watch],missing:[]}}});
 });
 
 test('missing lot or invalid sale cannot create a saved analysis',async()=>{

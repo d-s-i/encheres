@@ -7,7 +7,7 @@
     "test": "node --test test/*.test.mjs",
     "property": "node --test test/property/*.test.mjs",
     "acceptance:generate": "node scripts/generate-acceptance.mjs",
-    "acceptance": "pnpm acceptance:generate && node --test .ai/tasks/LOT-001/acceptance/generated/*.test.mjs .ai/tasks/PRICE-001/acceptance/generated/*.test.mjs .ai/tasks/APP-001/acceptance/generated/*.test.mjs",
+    "acceptance": "pnpm acceptance:generate && node --test .ai/tasks/LOT-001/acceptance/generated/*.test.mjs .ai/tasks/PRICE-001/acceptance/generated/*.test.mjs .ai/tasks/APP-001/acceptance/generated/*.test.mjs .ai/tasks/IMPORT-001/acceptance/generated/*.test.mjs",
     "app:start": "node --env-file-if-exists=.env bin/app.mjs"
   },
   "dependencies": {

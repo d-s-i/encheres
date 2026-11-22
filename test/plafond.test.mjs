@@ -83,6 +83,23 @@ test('dated catalogue of target sale verifies both buyer and live fees, not the 
  assert.deepEqual(calls,[saleUrl,catalogue]);
 });
 
+test('PDF line-break in acheteurs does not hide the documented live surcharge',async()=>{
+ const pdfLines=[clauses[0],'2. FRAIS ACHETEURS','Les frais acheteurs sont fixés à 18 % TTC.','3. MODE DE PAIEMENT','6. ENCHÈRES EN DIRECT','Frais supplémentaires de plateforme de 1,2 % TTC en plus des frais ache-','teurs de18,00 % TTC.','7. ORDRES D ACHAT'];
+ // Keep the rate immediately before the broken word, as in the published catalogue.
+ const bytes=await pdfFor(pdfLines);
+ const fetchImpl=async url=>String(url)===saleUrl?{ok:true,url:saleUrl,text:async()=>`<a href="${catalogue}">catalogue</a>`}:{ok:true,url:catalogue,arrayBuffer:async()=>bytes.buffer};
+ assert.deepEqual(await verifiedTargetFees(watch,{fetchImpl}),targetFees);
+});
+
+test('ambiguous or unrelated percentages in live terms do not create an invented surcharge',async()=>{
+ const lookup=async lines=>{
+  const bytes=await pdfFor(lines);
+  return verifiedTargetFees(watch,{fetchImpl:async url=>String(url)===saleUrl?{ok:true,url:saleUrl,text:async()=>`<a href="${catalogue}">catalogue</a>`}:{ok:true,url:catalogue,arrayBuffer:async()=>bytes.buffer}});
+ };
+ assert.equal(await lookup([...clauses.slice(0,-1),'Pas de majoration des frais habituels pour les lots judiciaires.','7. ORDRES D ACHAT']),null);
+ assert.equal(await lookup([...clauses.slice(0,-1),'Frais supplémentaires de plateforme de 2 % TTC.','1,2 % TTC en plus des frais acheteurs.','7. ORDRES D ACHAT']),null);
+});
+
 test('a dated target catalogue that explicitly waives live surcharge uses buyer fees only',async()=>{
  const lines=clauses.filter(s=>!s.includes('1,2'));
  lines.splice(lines.findIndex(s=>s.startsWith('7. ORDRES')),0,'Pas de majoration des frais habituels pour les lots judiciaires : 18,00 % TTC frais acheteur.');

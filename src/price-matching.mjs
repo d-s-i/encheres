@@ -39,7 +39,9 @@ function carreraCompatible(watch, candidate) {
 
 function matchingModel(watch,candidate) {
   const model = normalized(watch.model), other = normalized(candidate.model);
-  if (!model || !other.includes(model)) return false;
+  // Ignore word boundaries for catalogue spellings such as Oysterdate / Oyster Date.
+  const compact = value => value.replace(/[\s\p{P}]+/gu, '');
+  if (!model || !(other.includes(model) || compact(other).includes(compact(model)))) return false;
   if (model === 'monaco') return monacoCompatible(watch,candidate,other);
   if (model.includes('carrera')) return carreraCompatible(watch,candidate);
   return true;

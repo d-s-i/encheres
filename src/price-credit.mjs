@@ -16,10 +16,17 @@ async function getHtml(url, fetchImpl) {
   return response.text();
 }
 
-function searchUrl(watch) {
+function searchUrl(watch, model = watch.model) {
   const url = new URL(rootUrl);
-  url.search = new URLSearchParams({ search: `${watch.brand} ${watch.model}`, 'lot-state':'lot-sold', 'sale-date':'sale-date-all' }).toString();
+  url.search = new URLSearchParams({ search: `${watch.brand} ${model}`, 'lot-state':'lot-sold', 'sale-date':'sale-date-all' }).toString();
   return url;
+}
+
+function searchModels(model) {
+  const words = model.trim().split(/\s+/u);
+  // Broaden discovery by one word, but keep the brand and a model term.
+  // Detail pages are still verified and filtered separately.
+  return words.length > 1 ? [model, words.slice(0, -1).join(' ')] : [model];
 }
 
 function cardLinks($, pageUrl, links) {
@@ -43,15 +50,18 @@ function checkedResults($) {
   if (!$('.card--lot').length && !/Aucun résultat|Il existe 0 résultats/i.test($('main').text())) throw new Error('Crédit Municipal : résultats non vérifiables.');
 }
 async function searchLinks(watch, fetchImpl, maxPages) {
-  const root = searchUrl(watch), links = new Set();
-  let last = 1;
-  for (let page = 1; page <= last; page++) {
-    if (page > maxPages) throw new Error('Crédit Municipal : pagination incomplète.');
-    const url = numberedPage(root,page), $ = load(await getHtml(url,fetchImpl));
-    checkedResults($);
-    cardLinks($,url,links);
-    last = lastPage($,url,last);
-    if (last > maxPages) throw new Error('Crédit Municipal : pagination incomplète.');
+  const links = new Set();
+  for (const model of searchModels(watch.model)) {
+    const root = searchUrl(watch, model);
+    let last = 1;
+    for (let page = 1; page <= last; page++) {
+      if (page > maxPages) throw new Error('Crédit Municipal : pagination incomplète.');
+      const url = numberedPage(root,page), $ = load(await getHtml(url,fetchImpl));
+      checkedResults($);
+      cardLinks($,url,links);
+      last = lastPage($,url,last);
+      if (last > maxPages) throw new Error('Crédit Municipal : pagination incomplète.');
+    }
   }
   return links;
 }

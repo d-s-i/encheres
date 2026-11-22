@@ -1,16 +1,17 @@
 import * as blobSdk from '@vercel/blob';
 
 // Private store: study contents and price history must never have a public blob URL.
-const pathname=id=>`studies/${id}.json`;
-export function blobStudyStore(sdk=blobSdk){
+export function blobStudyStore(sdk=blobSdk,{prefix='studies/'}={}){
+ if(!['studies/','favorites/'].includes(prefix))throw Error('Préfixe Blob invalide.');
+ const pathname=id=>`${prefix}${id}.json`;
  const {put,get,head,list,del,BlobNotFoundError}=sdk;
  return {
   async list(){
    const records=[];let cursor;
    do{
-    const page=await list({prefix:'studies/',cursor,limit:1000});
+    const page=await list({prefix,cursor,limit:1000});
     for(const blob of page.blobs){
-     if(!/^studies\/[a-f0-9]{64}\.json$/.test(blob.pathname))continue;
+     if(!blob.pathname.startsWith(prefix)||!/^[a-f0-9]{64}\.json$/.test(blob.pathname.slice(prefix.length)))continue;
      const result=await get(blob.pathname,{access:'private',useCache:false});
      if(result?.statusCode===200)records.push(await new Response(result.stream).json());
     }

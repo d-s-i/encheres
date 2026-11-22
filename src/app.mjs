@@ -1,26 +1,30 @@
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
+import {join} from 'node:path';
 import {fileStudyStore} from './study-store.mjs';
 import {studyLots} from './lots.mjs';
 import {compareWatch} from './prices.mjs';
 import {readAppImages} from './app-images.mjs';
+import {upcomingSales} from './upcoming-sales.mjs';
+import {parseFavorites} from './favorites.mjs';
+import {bookmarkletHref} from './favorite-capture.mjs';
 
-import {detail,home,layout} from './app-view.mjs';
+import {detail,home,layout,favoritePreview} from './app-view.mjs';
 
 const official='www.creditmunicipal.fr';
 function saleUrl(value){
- try{const u=new URL(value);if(u.protocol!=='https:'||u.hostname!==official||!/^\/ventes-aux-encheres\/catalogue-des-ventes\/(?:ventes-passees\/)?\d{9}\/$/.test(u.pathname))return null;return u.origin+u.pathname}
+ try{const u=new URL(value);if(u.protocol!=='https:'||u.hostname!==official||!/^\/ventes-aux-encheres\/catalogue-des-ventes\/(?:ventes-passees\/)?\d{9}\/?$/.test(u.pathname))return null;return u.origin+u.pathname.replace(/\/?$/,'/')}
  catch{return null}
 }
 
 function send(res,status,body,headers={}){res.writeHead(status,{'content-type':'text/html; charset=utf-8','cache-control':'no-store','content-security-policy':"default-src 'self'; img-src 'self' https://www.creditmunicipal.fr https://*.chrono24.com; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'",...headers});res.end(body)}
-async function bodyOf(req){
+async function bodyOf(req,maxLength=10_000){
  if(req.body!==undefined){
   const data=typeof req.body==='string'?req.body:Buffer.isBuffer(req.body)?req.body.toString('utf8'):new URLSearchParams(req.body).toString();
-  if(data.length>10_000)throw Error('Formulaire trop long.');
+  if(data.length>maxLength)throw Error('Formulaire trop long.');
   return new URLSearchParams(data);
  }
- let data='';for await(const chunk of req){data+=chunk;if(data.length>10_000)throw Error('Formulaire trop long.')}return new URLSearchParams(data);
+ let data='';for await(const chunk of req){data+=chunk;if(data.length>maxLength)throw Error('Formulaire trop long.')}return new URLSearchParams(data);
 }
 function sameOrigin(req){
  if(!req.headers.origin)return true;
@@ -63,17 +67,39 @@ async function createStudy(req,res,options){
   return await persistStudy(res,options,id,result);
  }finally{options.pending.delete(id)}
 }
-async function getRoute(path,res,{store}){
+async function getRoute(path,res,{store,favoriteStore,listSales}){
  if(path==='/app.css')return send(res,200,await readFile(new URL('../public/app.css',import.meta.url),'utf8'),{'content-type':'text/css; charset=utf-8'});
  if(path==='/app.js')return send(res,200,await readFile(new URL('../public/app.js',import.meta.url),'utf8'),{'content-type':'text/javascript; charset=utf-8'});
- if(path==='/')return send(res,200,home(await store.list()));
+ if(path==='/'){
+  const records=await store.list();
+  let sales=null;
+  try{sales=await listSales()}catch(e){console.error('Présélection des ventes indisponible :',e)}
+  return send(res,200,home(records,sales,await favoriteStore.list(),bookmarkletHref()));
+ }
  if(/^\/studies\/[a-f0-9]{64}$/.test(path))return readStudy(res,store,path.slice('/studies/'.length));
  return notFound(res);
 }
+async function importFavorites(req,res,{favoriteStore},preview=false){
+ const form=await bodyOf(req,100_000);
+ let favorites;
+ try{favorites=parseFavorites(form.get('payload'))}catch(e){return send(res,422,layout(`<h1>Import de favoris refusé</h1><p>${e.message}</p><p><a href="/">Retour</a></p>`))}
+ if(preview)return send(res,200,favoritePreview(favorites,form.get('payload')));
+ const sale=form.get('saleUrl'),selected=favorites.filter(f=>f.saleUrl===sale);
+ if(!selected.length)return send(res,422,layout('<h1>Vente sélectionnée invalide</h1>'));
+ for(const favorite of selected)await favoriteStore.put(favorite.id,favorite);
+ return send(res,303,'',{'location':'/'});
+}
 async function postRoute(path,req,res,options){
+ const favoriteDeletion=path.match(/^\/favorites\/([a-f0-9]{64})\/delete$/);
+ if(favoriteDeletion){
+  if(!await options.favoriteStore.delete(favoriteDeletion[1]))return notFound(res);
+  return send(res,303,'',{'location':'/'});
+ }
  const deletion=path.match(/^\/studies\/([a-f0-9]{64})\/delete$/);
  if(deletion)return removeStudy(res,options,deletion[1]);
  if(path==='/studies')return createStudy(req,res,options);
+ if(path==='/favorites/preview')return importFavorites(req,res,options,true);
+ if(path==='/favorites')return importFavorites(req,res,options);
  return notFound(res);
 }
 async function dispatch(req,res,path,options){
@@ -82,8 +108,8 @@ async function dispatch(req,res,path,options){
  if(req.method==='POST')return postRoute(path,req,res,options);
  return notFound(res);
 }
-export function createApplication({dataDir,store=fileStudyStore(dataDir),study=studyLots,compare=compareWatch,images=readAppImages,asOf=()=>new Date().toISOString().slice(0,10)}={}){
- const options={store,study,compare,images,asOf,pending:new Set()};
+export function createApplication({dataDir,store=fileStudyStore(dataDir),favoriteStore=fileStudyStore(join(dataDir??join(process.cwd(),'data'),'favorites')),study=studyLots,compare=compareWatch,images=readAppImages,listSales=upcomingSales,asOf=()=>new Date().toISOString().slice(0,10)}={}){
+ const options={store,favoriteStore,study,compare,images,listSales,asOf,pending:new Set()};
  return async function handler(req,res){
   const path=new URL(req.url,'http://localhost').pathname;
   try{await dispatch(req,res,path,options)}

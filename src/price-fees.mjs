@@ -83,10 +83,16 @@ function parsedRate(section, pattern) {
   return rate ? Number(rate.replace(',','.')) : null;
 }
 function liveRate(contents) {
-  const section = contents.match(/6\.\s*ENCHÈRES EN DIRECT([\s\S]*?)(?:7\.\s*ORDRES D.ACHAT)/i)?.[1] ?? '';
-  if (/Pas de majoration des frais habituels pour les lots judiciaires/i.test(section)) return 0;
+  const raw = contents.match(/6\.\s*ENCHÈRES EN DIRECT([\s\S]*?)(?:7\.\s*ORDRES D.ACHAT)/i)?.[1] ?? '';
+  // PDF extraction may split a word at the end of a line ("ache- teurs").
+  const section = raw.replace(/ache-\s+teurs/gi,'acheteurs').replace(/\s+/g,' ');
+  const waived = /Pas de majoration des frais habituels pour les lots judiciaires/i.test(section);
+  const explicit = parsedRate(section,/frais supplémentaires de plateforme(?: live)? de\s*(\d{1,2}(?:[,.]\d+)?)\s*%\s*TTC/i);
+  const adjacent = parsedRate(section,/(\d{1,2}(?:[,.]\d+)?)\s*%\s*TTC\s+en plus des frais acheteurs/i);
+  if (waived) return explicit === null && adjacent === null ? 0 : null;
   if (!/en plus des frais acheteurs/i.test(section)) return null;
-  return parsedRate(section,/(\d{1,2}(?:[,.]\d+)?)\s*%\s*TTC/i);
+  if (explicit !== null && adjacent !== null && explicit !== adjacent) return null;
+  return explicit ?? adjacent;
 }
 function catalogueFees(contents) {
   const buyerPercent=buyerRate(contents), livePercent=liveRate(contents);
