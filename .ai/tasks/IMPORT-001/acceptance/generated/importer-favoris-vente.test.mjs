@@ -15,7 +15,7 @@ const scenarios = [
       },
       {
         "keyword": "When",
-        "text": "l'utilisateur importe les favoris de la vente A dans l'application"
+        "text": "l'utilisateur choisit la vente A dans l'extension depuis la page Favoris et lance l'import direct"
       },
       {
         "keyword": "Then",
@@ -28,6 +28,10 @@ const scenarios = [
       {
         "keyword": "And",
         "text": "aucune étude de prix n'est lancée par cet import"
+      },
+      {
+        "keyword": "And",
+        "text": "aucun raccourci javascript ou collage manuel de liste n'est nécessaire"
       }
     ],
     "examples": []
@@ -41,7 +45,7 @@ const scenarios = [
       },
       {
         "keyword": "When",
-        "text": "l'utilisateur importe les favoris de la vente A dans l'application"
+        "text": "l'utilisateur choisit la vente A dans l'extension depuis la page Favoris et lance l'import direct"
       },
       {
         "keyword": "Then",
@@ -67,7 +71,7 @@ const scenarios = [
       },
       {
         "keyword": "When",
-        "text": "l'utilisateur importe les favoris de la vente A dans l'application"
+        "text": "l'utilisateur choisit la vente A dans l'extension depuis la page Favoris et lance l'import direct"
       },
       {
         "keyword": "Then",
@@ -89,7 +93,7 @@ const scenarios = [
       },
       {
         "keyword": "When",
-        "text": "l'utilisateur importe les favoris de la vente A dans l'application"
+        "text": "l'utilisateur tente d'importer la vente A par l'extension depuis cette source ambiguë"
       },
       {
         "keyword": "Then",
@@ -120,6 +124,32 @@ const scenarios = [
       {
         "keyword": "And",
         "text": "elle ne voit aucune étude de prix créée par le seul import"
+      }
+    ],
+    "examples": []
+  },
+  {
+    "name": "IMPORT-001-S06 Installer l'extension sans boutique et ouvrir le choix de vente",
+    "steps": [
+      {
+        "keyword": "Given",
+        "text": "le dossier de l'extension est disponible sur la machine et Chromium est installé"
+      },
+      {
+        "keyword": "When",
+        "text": "l'utilisateur charge ce dossier comme extension non empaquetée dans Chromium"
+      },
+      {
+        "keyword": "And",
+        "text": "il ouvre la page Favoris de son compte Interencheres"
+      },
+      {
+        "keyword": "Then",
+        "text": "l'extension est disponible dans son navigateur et présente les ventes de ses favoris"
+      },
+      {
+        "keyword": "And",
+        "text": "la sélection d'une vente seule n'importe encore aucun lot"
       }
     ],
     "examples": []

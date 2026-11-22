@@ -7,9 +7,8 @@ import {compareWatch} from './prices.mjs';
 import {readAppImages} from './app-images.mjs';
 import {upcomingSales} from './upcoming-sales.mjs';
 import {parseFavorites} from './favorites.mjs';
-import {bookmarkletHref} from './favorite-capture.mjs';
 
-import {detail,home,layout,favoritePreview} from './app-view.mjs';
+import {detail,home,layout} from './app-view.mjs';
 
 const official='www.creditmunicipal.fr';
 function saleUrl(value){
@@ -74,20 +73,30 @@ async function getRoute(path,res,{store,favoriteStore,listSales}){
   const records=await store.list();
   let sales=null;
   try{sales=await listSales()}catch(e){console.error('Présélection des ventes indisponible :',e)}
-  return send(res,200,home(records,sales,await favoriteStore.list(),bookmarkletHref()));
+  return send(res,200,home(records,sales,await favoriteStore.list()));
  }
  if(/^\/studies\/[a-f0-9]{64}$/.test(path))return readStudy(res,store,path.slice('/studies/'.length));
  return notFound(res);
 }
-async function importFavorites(req,res,{favoriteStore},preview=false){
- const form=await bodyOf(req,100_000);
- let favorites;
- try{favorites=parseFavorites(form.get('payload'))}catch(e){return send(res,422,layout(`<h1>Import de favoris refusé</h1><p>${e.message}</p><p><a href="/">Retour</a></p>`))}
- if(preview)return send(res,200,favoritePreview(favorites,form.get('payload')));
- const sale=form.get('saleUrl'),selected=favorites.filter(f=>f.saleUrl===sale);
- if(!selected.length)return send(res,422,layout('<h1>Vente sélectionnée invalide</h1>'));
- for(const favorite of selected)await favoriteStore.put(favorite.id,favorite);
- return send(res,303,'',{'location':'/'});
+const extensionOrigin=req=>/^chrome-extension:\/\/[a-p]{32}$/.test(req.headers.origin??'')?req.headers.origin:null;
+function extensionHeaders(origin){return {'access-control-allow-origin':origin,'vary':'Origin','content-type':'application/json; charset=utf-8'}}
+async function jsonOf(req){
+ let data;
+ if(req.body!==undefined)data=typeof req.body==='string'?req.body:Buffer.isBuffer(req.body)?req.body.toString('utf8'):JSON.stringify(req.body);
+ else {const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>100_000)throw Error('Requête trop longue.');chunks.push(chunk)}data=Buffer.concat(chunks).toString('utf8')}
+ if(Buffer.byteLength(data)>100_000)throw Error('Requête trop longue.');
+ return JSON.parse(data);
+}
+async function importFromExtension(req,res,{favoriteStore},origin){
+ let favorites,sale;
+ try{
+  const input=await jsonOf(req);
+  favorites=parseFavorites(JSON.stringify({source:input.source,lots:input.lots}));
+  sale=input.saleUrl;
+  if(!favorites.length||favorites.some(f=>f.saleUrl!==sale))throw Error('Vente invalide.');
+ }catch{return send(res,422,JSON.stringify({error:'Liste de favoris ou vente non vérifiable.'}),extensionHeaders(origin))}
+ for(const favorite of favorites)await favoriteStore.put(favorite.id,favorite);
+ return send(res,200,JSON.stringify({imported:favorites.length,complete:false}),extensionHeaders(origin));
 }
 async function postRoute(path,req,res,options){
  const favoriteDeletion=path.match(/^\/favorites\/([a-f0-9]{64})\/delete$/);
@@ -98,11 +107,15 @@ async function postRoute(path,req,res,options){
  const deletion=path.match(/^\/studies\/([a-f0-9]{64})\/delete$/);
  if(deletion)return removeStudy(res,options,deletion[1]);
  if(path==='/studies')return createStudy(req,res,options);
- if(path==='/favorites/preview')return importFavorites(req,res,options,true);
- if(path==='/favorites')return importFavorites(req,res,options);
  return notFound(res);
 }
 async function dispatch(req,res,path,options){
+ if(path==='/favorites/from-extension'){
+  const origin=extensionOrigin(req);
+  if(!origin)return send(res,403,JSON.stringify({error:'Extension non autorisée.'}),{'content-type':'application/json; charset=utf-8'});
+  if(req.method==='OPTIONS')return send(res,204,'',{'access-control-allow-origin':origin,'access-control-allow-methods':'POST','access-control-allow-headers':'content-type','vary':'Origin'});
+  return req.method==='POST'?importFromExtension(req,res,options,origin):notFound(res);
+ }
  if(req.method==='POST'&&!sameOrigin(req))return send(res,403,layout('<h1>Origine du formulaire non autorisée</h1>'));
  if(req.method==='GET')return getRoute(path,res,options);
  if(req.method==='POST')return postRoute(path,req,res,options);

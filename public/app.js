@@ -1,8 +1,3 @@
-const bookmarkletButton=document.querySelector?.('#copy-bookmarklet');
-bookmarkletButton?.addEventListener('click',async()=>{
- try{await navigator.clipboard.writeText(document.querySelector('#favorite-bookmarklet').value);bookmarkletButton.textContent='Code copié'}
- catch{bookmarkletButton.textContent='Copie impossible : sélectionnez le code ci-dessus'}
-});
 const studyForm=document.querySelector?.('#study-form');
 const saleChoice=document.querySelector?.('#sale-choice');
 const saleInput=studyForm?.querySelector('input[name="saleUrl"]');

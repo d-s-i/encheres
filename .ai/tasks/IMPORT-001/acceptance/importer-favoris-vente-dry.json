@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "feature_name": "IMPORT-001-F01 Importer uniquement les lots favoris d'une vente Interencheres dans l'application",
+  "feature_name": "IMPORT-001-F01 Importer directement une vente de favoris Interencheres avec une extension Chromium",
   "summary": {
-    "step_occurrences": 23,
-    "unique_steps": 20,
+    "step_occurrences": 29,
+    "unique_steps": 27,
     "findings": 8
   },
   "findings": [

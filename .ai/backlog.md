@@ -1,8 +1,8 @@
 # Backlog
 
-## Needs clarification
+## Implemented — external QA pending
 
-- [ ] IMPORT-001 — Importer les lots favoris Interencheres d’une vente dans l’application sans lancer d’étude.
+- [ ] IMPORT-001 — Extension Chromium : choisir une vente depuis les favoris Interencheres et importer ses lots directement dans l’application ; QA navigateur/Vercel et pagination réelle à vérifier.
 
 ## Validated — APP-001 (mutation deferred)
 

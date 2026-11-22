@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Favoris Interencheres → Études de montres",
+  "version": "1.0.0",
+  "description": "Choisir une vente parmi les favoris affichés sur Interencheres et importer ses lots dans l'application d'études.",
+  "permissions": ["activeTab", "scripting"],
+  "optional_host_permissions": ["https://encheres-kohl.vercel.app/*", "http://127.0.0.1/*"],
+  "action": {"default_title": "Importer mes favoris", "default_popup": "popup.html"}
+}
