@@ -63,4 +63,3 @@ L'acceptation lit les features LOT-001, PRICE-001 (F01 et F02), APP-001 (F01, F0
 
 Les sources HTTPS sont limitées au domaine du Crédit Municipal de Paris ; leur disponibilité et leur structure peuvent changer. Les liens de lots sont vérifiés pour appartenir à la vente demandée.
 
-a
