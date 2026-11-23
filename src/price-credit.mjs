@@ -87,6 +87,7 @@ function parseSale(url, html) {
 }
 
 export async function searchCreditMunicipal(watch, { fetchImpl = fetch, maxPages = 30 } = {}) {
+  if(!watch.brand?.trim()||!watch.model?.trim())return [];
   const sales = [];
   for (const url of await searchLinks(watch, fetchImpl, maxPages)) {
     const sale = parseSale(url, await getHtml(url, fetchImpl));

@@ -7,6 +7,7 @@ import {compareWatch} from './prices.mjs';
 import {readAppImages} from './app-images.mjs';
 import {upcomingSales} from './upcoming-sales.mjs';
 import {parseFavorites} from './favorites.mjs';
+import {verifyCreditSale} from './credit-sale.mjs';
 
 import {detail,home,layout} from './app-view.mjs';
 
@@ -66,14 +67,15 @@ async function createStudy(req,res,options){
   return await persistStudy(res,options,id,result);
  }finally{options.pending.delete(id)}
 }
-async function getRoute(path,res,{store,favoriteStore,listSales}){
+async function getRoute(path,req,res,{store,favoriteStore,listSales}){
  if(path==='/app.css')return send(res,200,await readFile(new URL('../public/app.css',import.meta.url),'utf8'),{'content-type':'text/css; charset=utf-8'});
  if(path==='/app.js')return send(res,200,await readFile(new URL('../public/app.js',import.meta.url),'utf8'),{'content-type':'text/javascript; charset=utf-8'});
  if(path==='/'){
   const records=await store.list();
   let sales=null;
   try{sales=await listSales()}catch(e){console.error('Présélection des ventes indisponible :',e)}
-  return send(res,200,home(records,sales,await favoriteStore.list()));
+  const selectedSale=new URL(req.url,'http://localhost').searchParams.get('imported');
+  return send(res,200,home(records,sales,await favoriteStore.list(),selectedSale));
  }
  if(/^\/studies\/[a-f0-9]{64}$/.test(path))return readStudy(res,store,path.slice('/studies/'.length));
  return notFound(res);
@@ -87,15 +89,23 @@ async function jsonOf(req){
  if(Buffer.byteLength(data)>100_000)throw Error('Requête trop longue.');
  return JSON.parse(data);
 }
-async function importFromExtension(req,res,{favoriteStore},origin){
- let favorites,sale;
+async function importFromExtension(req,res,{favoriteStore,listSales},origin){
+ let favorites,sale,creditSaleUrl;
  try{
   const input=await jsonOf(req);
   favorites=parseFavorites(JSON.stringify({source:input.source,lots:input.lots}));
   sale=input.saleUrl;
-  if(!favorites.length||favorites.some(f=>f.saleUrl!==sale))throw Error('Vente invalide.');
- }catch{return send(res,422,JSON.stringify({error:'Liste de favoris ou vente non vérifiable.'}),extensionHeaders(origin))}
- for(const favorite of favorites)await favoriteStore.put(favorite.id,favorite);
+  if(!favorites.length||favorites.some(f=>f.saleUrl!==sale)||input.saleEvidence?.url!==sale)throw Error('Vente invalide.');
+  creditSaleUrl=verifyCreditSale(input.saleEvidence,await listSales());
+  if(!creditSaleUrl)throw Error('Vente Crédit Municipal non vérifiée.');
+ }catch{return send(res,422,JSON.stringify({error:'Liste de favoris ou vente Crédit Municipal non vérifiable.'}),extensionHeaders(origin))}
+ for(const favorite of favorites){
+  const record={...favorite,creditSaleUrl};
+  if(await favoriteStore.put(favorite.id,record))continue;
+  const existing=await favoriteStore.get(favorite.id);
+  if(!existing||existing.saleUrl!==favorite.saleUrl||existing.number!==favorite.number||existing.url!==favorite.url)return send(res,409,JSON.stringify({error:'Favori existant incompatible.'}),extensionHeaders(origin));
+  if(existing.creditSaleUrl!==creditSaleUrl)await favoriteStore.replace(favorite.id,record);
+ }
  return send(res,200,JSON.stringify({imported:favorites.length,complete:false}),extensionHeaders(origin));
 }
 async function postRoute(path,req,res,options){
@@ -117,7 +127,7 @@ async function dispatch(req,res,path,options){
   return req.method==='POST'?importFromExtension(req,res,options,origin):notFound(res);
  }
  if(req.method==='POST'&&!sameOrigin(req))return send(res,403,layout('<h1>Origine du formulaire non autorisée</h1>'));
- if(req.method==='GET')return getRoute(path,res,options);
+ if(req.method==='GET')return getRoute(path,req,res,options);
  if(req.method==='POST')return postRoute(path,req,res,options);
  return notFound(res);
 }

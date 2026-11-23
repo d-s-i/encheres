@@ -25,6 +25,9 @@ export function blobStudyStore(sdk=blobSdk,{prefix='studies/'}={}){
    if(await this.has(id))return false;
    await put(pathname(id),JSON.stringify(record),{access:'private',contentType:'application/json',addRandomSuffix:false});return true;
   },
+  async replace(id,record){
+   await put(pathname(id),JSON.stringify(record),{access:'private',contentType:'application/json',addRandomSuffix:false,allowOverwrite:true});
+  },
   async delete(id){
    if(!await this.has(id))return false;
    await del(pathname(id));return true;

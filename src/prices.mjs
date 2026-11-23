@@ -36,6 +36,12 @@ async function bidCeiling(watch, chrono, asOf, targetFeeLookup) {
 }
 
 export async function compareWatch(watch, {asOf = new Date().toISOString().slice(0,10),cmSearch = searchCreditMunicipal,feeLookup = verifiedFees,offerSearch = searchPacket,targetFeeLookup = verifiedTargetFees} = {}) {
+  if(!watch.brand?.trim()||!watch.model?.trim())return {
+    lot:watch.number,brand:watch.brand,model:watch.model,reference:watch.reference,asOf,
+    credit:{status:'unavailable',average:null,count:0,sales:[],reason:'model_unavailable'},
+    chrono:{status:'unavailable',average:null,count:0,offers:[],reason:'model_unavailable',priceKind:'prix demandés hors port'},
+    ceiling:unavailable('model_unavailable'),
+  };
   let credit,chrono;
   try {
     const sales = await cmSearch(watch);const fees = new Map();

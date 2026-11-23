@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-11-22T20:38:30Z",
+  "source": "https://www.interencheres.com/compte/favoris/",
+  "capture_method": "Playwright CDP, authenticated test Chromium, public rendered anchor href and visible lot number only; no cookies, tokens or account HTML persisted",
+  "observed_favorites": [
+    {"sale": "https://www.interencheres.com/art-decoration/horlogerie-692045/", "seller": "Crédit municipal de Paris", "number": 201, "url": "https://www.interencheres.com/art-decoration/horlogerie-692045/lot-89799687.html"},
+    {"sale": "https://www.interencheres.com/art-decoration/horlogerie-692045/", "seller": "Crédit municipal de Paris", "number": 202, "url": "https://www.interencheres.com/art-decoration/horlogerie-692045/lot-89799690.html"},
+    {"sale": "https://www.interencheres.com/art-decoration/belle-vente-de-noel-chez-cap-encheres-689953/", "seller": "CAP ENCHERES", "number": 1002, "url": "https://www.interencheres.com/art-decoration/belle-vente-de-noel-chez-cap-encheres-689953/lot-89387123.html"},
+    {"sale": "https://www.interencheres.com/art-decoration/belle-vente-de-noel-chez-cap-encheres-689953/", "seller": "CAP ENCHERES", "number": 1003, "url": "https://www.interencheres.com/art-decoration/belle-vente-de-noel-chez-cap-encheres-689953/lot-89387295.html"}
+  ],
+  "synthetic_replay_only": {
+    "order_only": {"number": 203, "public_lot_url": "https://www.interencheres.com/art-decoration/horlogerie-692045/lot-89799697.html", "warning": "Public lot URL observed, but this lot is NOT evidenced as an order in the account; its order-only state must be simulated, never asserted as a real order."},
+    "pagination": {"first_page": 201, "next_page": 202, "warning": "Both favorites observed on the account page; the second page and next link are synthetic, not evidence of real Interencheres pagination."}
+  }
+}

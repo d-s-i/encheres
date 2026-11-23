@@ -20,6 +20,7 @@ async function withServer(fn,{study=async()=>({watches:[watch],missing:[]}),comp
  const base=`http://127.0.0.1:${server.address().port}`;
  try{await fn({base,dir,handler})}finally{await new Promise(resolve=>server.close(resolve));await rm(dir,{recursive:true,force:true})}
 }
+const savedRows=(html,number)=>load(html)(`table[aria-label="Tableau des études"] tr[data-lot="${number}"]`).length;
 const submit=(base,number=268,url=sale)=>fetch(base+'/studies',{method:'POST',redirect:'manual',headers:{'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({saleUrl:url,number:String(number)})});
 
 test('public form studies a lot, saves a sourced price table and puts the target and comparable photos in the right places',async()=>{
@@ -47,7 +48,7 @@ test('study detail has a visible link back to the main menu',async()=>{
   assert.equal(link.attr('href'),'/');
   const home=await fetch(new URL(link.attr('href'),base));
   assert.equal(home.status,200);
-  assert.match(await home.text(),/Études sauvegardées/);
+  assert.match(await home.text(),/Tableau des études/);
  });
 });
 
@@ -101,7 +102,7 @@ test('saved duplicate is blocked before any source request and opens the unmodif
   assert.match(await second.text(),/Lot déjà analysé/);
   assert.deepEqual([studies,comparisons,photos],[1,1,1]);
   const previous=await(await fetch(new URL(location,base))).text();assert.match(previous,/4 345/);
-  const list=await(await fetch(base)).text();assert.equal((list.match(/Lot 268/g)||[]).length,1);
+  const list=await(await fetch(base)).text();assert.equal(savedRows(list,268),1);
  },{study:async()=>{studies++;return {watches:[watch],missing:[]}},compare:async()=>{comparisons++;return comparison},images:async()=>{photos++;return {target:[],credit:{},offers:{}}}});
 });
 
@@ -151,7 +152,7 @@ test('same lot number in two sales has two independent rows, views and deletions
   const first=await submit(base),second=await submit(base,268,secondSale);
   assert.equal(first.status,303);assert.equal(second.status,303);assert.notEqual(first.headers.get('location'),second.headers.get('location'));
   assert.equal(calls,2);
-  const list=await(await fetch(base)).text();assert.equal((list.match(/Lot 268/g)||[]).length,2);assert.match(list,/261205000/);assert.match(list,/240615000/);
+  const list=await(await fetch(base)).text();assert.equal(savedRows(list,268),2);assert.match(list,/261205000/);assert.match(list,/240615000/);
   const other=await(await fetch(base+second.headers.get('location'))).text();assert.match(other,/240615000/);assert.match(other,/268-2.jpg/);
   assert.equal((await fetch(base+first.headers.get('location')+'/delete',{method:'POST',redirect:'manual'})).status,303);
   assert.equal((await fetch(base+first.headers.get('location'))).status,404);
@@ -178,7 +179,7 @@ test('after deleting one sale, a restarted server still shows the other sale and
   assert.equal(first.status,303);assert.equal(second.status,303);
   assert.equal((await fetch(base+first.headers.get('location')+'/delete',{method:'POST',redirect:'manual'})).status,303);
   const server=await new Promise(resolve=>{const s=createServer(createApplication({dataDir:dir,study:async()=>{throw Error('must not fetch')},compare:async()=>{throw Error('must not compare')}}));s.listen(0,'127.0.0.1',()=>resolve(s))});
-  try{const reopened=`http://127.0.0.1:${server.address().port}`;assert.equal((await fetch(reopened+first.headers.get('location'))).status,404);const page=await(await fetch(reopened+second.headers.get('location'))).text();assert.match(page,/240615000/);assert.match(page,/268-2.jpg/);assert.equal(((await(await fetch(reopened)).text()).match(/Lot 268/g)||[]).length,1)}finally{await new Promise(resolve=>server.close(resolve))}
+  try{const reopened=`http://127.0.0.1:${server.address().port}`;assert.equal((await fetch(reopened+first.headers.get('location'))).status,404);const page=await(await fetch(reopened+second.headers.get('location'))).text();assert.match(page,/240615000/);assert.match(page,/268-2.jpg/);assert.equal(savedRows(await(await fetch(reopened)).text(),268),1)}finally{await new Promise(resolve=>server.close(resolve))}
  },{study:async({saleUrl})=>({watches:[{...watch,saleUrl,source:saleUrl+'lot-268/'}],missing:[]}),images:async w=>({target:[`https://www.creditmunicipal.fr/app/uploads/sales/${w.saleUrl.includes('240615000')?'240615000':'261205000'}/images/${w.saleUrl.includes('240615000')?'268-2':'268-1'}.jpg`],credit:{},offers:{}})});
 });
 

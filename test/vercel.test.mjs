@@ -24,15 +24,19 @@ test('private blob store lists pages, reads, rejects duplicates and deletes',asy
 
 test('favorites in private Blob use their own prefix and never leak into study listings',async()=>{
  const id='b'.repeat(64),items=new Map();class BlobNotFoundError extends Error{}
+ let overwrite=false;
  const sdk={BlobNotFoundError,
   async head(path){if(!items.has(path))throw new BlobNotFoundError()},
-  async put(path,data,options){assert.equal(options.access,'private');items.set(path,data)},
+  async put(path,data,options){assert.equal(options.access,'private');if(options.allowOverwrite)overwrite=true;items.set(path,data)},
   async get(path){return items.has(path)?{statusCode:200,stream:new Response(items.get(path)).body}:null},
   async list({prefix}){return {blobs:[...items.keys()].filter(path=>path.startsWith(prefix)).map(path=>({pathname:path})),hasMore:false}}
  };
  const favorites=blobStudyStore(sdk,{prefix:'favorites/'}),studies=blobStudyStore(sdk);
  assert.equal(await favorites.put(id,{id,number:1002}),true);
  assert.deepEqual(await favorites.list(),[{id,number:1002}]);
+ await favorites.replace(id,{id,number:1002,creditSaleUrl:'https://www.creditmunicipal.fr/'});
+ assert.equal(overwrite,true);
+ assert.equal((await favorites.get(id)).creditSaleUrl,'https://www.creditmunicipal.fr/');
  assert.deepEqual(await studies.list(),[]);
 });
 

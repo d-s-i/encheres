@@ -1,167 +1,42 @@
 {
   "schema_version": 1,
-  "feature_name": "IMPORT-001-F01 Importer directement une vente de favoris Interencheres avec une extension Chromium",
+  "feature_name": "IMPORT-001-F01 Importer uniquement les favoris Crédit Municipal avec une extension Chromium",
   "summary": {
-    "step_occurrences": 29,
-    "unique_steps": 27,
+    "step_occurrences": 63,
+    "unique_steps": 59,
     "findings": 8
   },
   "findings": [
     {
-      "kind": "near-duplicate",
-      "confidence": "medium",
-      "members": [
-        {
-          "text": "le lot 1002 apparaît parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 1,
-              "scenario_name": "IMPORT-001-S02 Exclure un lot suivi uniquement par un ordre d'achat",
-              "step_index": 2,
-              "keyword": "Then"
-            }
-          ]
-        },
-        {
-          "text": "le lot 1004 n'apparaît pas parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 1,
-              "scenario_name": "IMPORT-001-S02 Exclure un lot suivi uniquement par un ordre d'achat",
-              "step_index": 3,
-              "keyword": "And"
-            }
-          ]
-        }
-      ],
-      "reason": "step texts are highly similar after placeholder normalization",
-      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.769
-    },
-    {
       "kind": "possible-synonym",
       "confidence": "medium",
       "members": [
         {
-          "text": "elle ne présente pas le lot 1002 de la vente B parmi les favoris importés de la vente A",
+          "text": "les lots 221 et 268 favoris de la vente Crédit Municipal sont importés et le lot 221 est déjà étudié",
           "locations": [
             {
               "section": "scenario",
-              "scenario_index": 0,
-              "scenario_name": "IMPORT-001-S01 Retrouver les favoris de la vente choisie sans lancer d'étude",
-              "step_index": 4,
-              "keyword": "And"
+              "scenario_index": 10,
+              "scenario_name": "IMPORT-001-S11 Retrouver une étude sauvegardée sans afficher les favoris en attente",
+              "step_index": 0,
+              "keyword": "Given"
             }
           ]
         },
         {
-          "text": "le lot 1002 apparaît parmi les favoris importés de la vente A",
+          "text": "les lots 221 et 268 favoris de la vente Crédit Municipal sont importés sans étude",
           "locations": [
             {
               "section": "scenario",
-              "scenario_index": 1,
-              "scenario_name": "IMPORT-001-S02 Exclure un lot suivi uniquement par un ordre d'achat",
-              "step_index": 2,
-              "keyword": "Then"
-            }
-          ]
-        }
-      ],
-      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
-      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.625
-    },
-    {
-      "kind": "possible-synonym",
-      "confidence": "medium",
-      "members": [
-        {
-          "text": "elle peut voir les favoris importés 1002 et 1003 de la vente A",
-          "locations": [
+              "scenario_index": 7,
+              "scenario_name": "IMPORT-001-S08 Étudier tous les favoris vérifiés d'une vente Crédit Municipal après confirmation",
+              "step_index": 0,
+              "keyword": "Given"
+            },
             {
               "section": "scenario",
-              "scenario_index": 4,
-              "scenario_name": "IMPORT-001-S05 Consulter les favoris importés sur l'application Vercel",
-              "step_index": 2,
-              "keyword": "Then"
-            }
-          ]
-        },
-        {
-          "text": "les lots 1002 et 1003 apparaissent parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 2,
-              "scenario_name": "IMPORT-001-S03 Importer aussi les favoris des pages suivantes",
-              "step_index": 3,
-              "keyword": "Then"
-            }
-          ]
-        }
-      ],
-      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
-      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.6
-    },
-    {
-      "kind": "possible-synonym",
-      "confidence": "medium",
-      "members": [
-        {
-          "text": "elle ne présente pas le lot 1002 de la vente B parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 0,
-              "scenario_name": "IMPORT-001-S01 Retrouver les favoris de la vente choisie sans lancer d'étude",
-              "step_index": 4,
-              "keyword": "And"
-            }
-          ]
-        },
-        {
-          "text": "le lot 1004 n'apparaît pas parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 1,
-              "scenario_name": "IMPORT-001-S02 Exclure un lot suivi uniquement par un ordre d'achat",
-              "step_index": 3,
-              "keyword": "And"
-            }
-          ]
-        }
-      ],
-      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
-      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.588
-    },
-    {
-      "kind": "possible-synonym",
-      "confidence": "medium",
-      "members": [
-        {
-          "text": "les lots 1002 et 1003 apparaissent parmi les favoris importés de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 2,
-              "scenario_name": "IMPORT-001-S03 Importer aussi les favoris des pages suivantes",
-              "step_index": 3,
-              "keyword": "Then"
-            }
-          ]
-        },
-        {
-          "text": "les lots 1002 et 1003 de la vente A ont été importés dans l'application Vercel",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 4,
-              "scenario_name": "IMPORT-001-S05 Consulter les favoris importés sur l'application Vercel",
+              "scenario_index": 9,
+              "scenario_name": "IMPORT-001-S10 Montrer une seule action principale et le tableau directement en dessous",
               "step_index": 0,
               "keyword": "Given"
             }
@@ -170,14 +45,193 @@
       ],
       "reason": "step texts share many non-placeholder tokens and may describe the same concept",
       "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.563
+      "score": 0.7
     },
     {
       "kind": "possible-synonym",
       "confidence": "medium",
       "members": [
         {
-          "text": "le lot 1002 apparaît parmi les favoris importés de la vente A",
+          "text": "l'utilisateur confirme le lancement de l'étude pour tous les lots de cette vente",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 7,
+              "scenario_name": "IMPORT-001-S08 Étudier tous les favoris vérifiés d'une vente Crédit Municipal après confirmation",
+              "step_index": 1,
+              "keyword": "When"
+            }
+          ]
+        },
+        {
+          "text": "l'utilisateur lance l'étude pour tous les lots de cette vente",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 8,
+              "scenario_name": "IMPORT-001-S09 Continuer après un lot déjà étudié et un lot en échec",
+              "step_index": 2,
+              "keyword": "When"
+            }
+          ]
+        }
+      ],
+      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
+      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
+      "score": 0.692
+    },
+    {
+      "kind": "possible-synonym",
+      "confidence": "medium",
+      "members": [
+        {
+          "text": "l'utilisateur ouvre la page principale sans lien de retour d'import",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 9,
+              "scenario_name": "IMPORT-001-S10 Montrer une seule action principale et le tableau directement en dessous",
+              "step_index": 1,
+              "keyword": "When"
+            },
+            {
+              "section": "scenario",
+              "scenario_index": 10,
+              "scenario_name": "IMPORT-001-S11 Retrouver une étude sauvegardée sans afficher les favoris en attente",
+              "step_index": 1,
+              "keyword": "When"
+            }
+          ]
+        },
+        {
+          "text": "la page principale est ouverte sans lien de retour d'import",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 11,
+              "scenario_name": "IMPORT-001-S12 Choisir comment commencer une nouvelle analyse",
+              "step_index": 0,
+              "keyword": "Given"
+            }
+          ]
+        }
+      ],
+      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
+      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
+      "score": 0.667
+    },
+    {
+      "kind": "possible-synonym",
+      "confidence": "medium",
+      "members": [
+        {
+          "text": "le lot 1002 de la vente B n'est pas inclus dans cette analyse",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 0,
+              "scenario_name": "IMPORT-001-S01 Retrouver les favoris de la vente choisie sans lancer d'étude",
+              "step_index": 4,
+              "keyword": "And"
+            }
+          ]
+        },
+        {
+          "text": "le lot 1004 n'est pas inclus dans cette analyse",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 1,
+              "scenario_name": "IMPORT-001-S02 Exclure un lot suivi uniquement par un ordre d'achat",
+              "step_index": 3,
+              "keyword": "And"
+            }
+          ]
+        }
+      ],
+      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
+      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
+      "score": 0.615
+    },
+    {
+      "kind": "possible-synonym",
+      "confidence": "medium",
+      "members": [
+        {
+          "text": "les lots 221 et 268 favoris de la vente Crédit Municipal sont importés et le lot 221 est déjà étudié",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 10,
+              "scenario_name": "IMPORT-001-S11 Retrouver une étude sauvegardée sans afficher les favoris en attente",
+              "step_index": 0,
+              "keyword": "Given"
+            }
+          ]
+        },
+        {
+          "text": "les lots 221, 268 et 343 sont importés pour une vente Crédit Municipal et le lot 268 a déjà son étude",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 8,
+              "scenario_name": "IMPORT-001-S09 Continuer après un lot déjà étudié et un lot en échec",
+              "step_index": 0,
+              "keyword": "Given"
+            }
+          ]
+        }
+      ],
+      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
+      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
+      "score": 0.565
+    },
+    {
+      "kind": "possible-synonym",
+      "confidence": "medium",
+      "members": [
+        {
+          "text": "les lots 221 et 268 favoris de la vente Crédit Municipal sont importés sans étude",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 7,
+              "scenario_name": "IMPORT-001-S08 Étudier tous les favoris vérifiés d'une vente Crédit Municipal après confirmation",
+              "step_index": 0,
+              "keyword": "Given"
+            },
+            {
+              "section": "scenario",
+              "scenario_index": 9,
+              "scenario_name": "IMPORT-001-S10 Montrer une seule action principale et le tableau directement en dessous",
+              "step_index": 0,
+              "keyword": "Given"
+            }
+          ]
+        },
+        {
+          "text": "les lots 221, 268 et 343 sont importés pour une vente Crédit Municipal et le lot 268 a déjà son étude",
+          "locations": [
+            {
+              "section": "scenario",
+              "scenario_index": 8,
+              "scenario_name": "IMPORT-001-S09 Continuer après un lot déjà étudié et un lot en échec",
+              "step_index": 0,
+              "keyword": "Given"
+            }
+          ]
+        }
+      ],
+      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
+      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
+      "score": 0.545
+    },
+    {
+      "kind": "possible-synonym",
+      "confidence": "medium",
+      "members": [
+        {
+          "text": "l'analyse proposée contient le lot 1002 de la vente A",
           "locations": [
             {
               "section": "scenario",
@@ -189,33 +243,33 @@
           ]
         },
         {
-          "text": "les lots 1002 et 1003 apparaissent parmi les favoris importés de la vente A",
+          "text": "le lot 1002 de la vente B n'est pas inclus dans cette analyse",
           "locations": [
             {
               "section": "scenario",
-              "scenario_index": 2,
-              "scenario_name": "IMPORT-001-S03 Importer aussi les favoris des pages suivantes",
-              "step_index": 3,
-              "keyword": "Then"
+              "scenario_index": 0,
+              "scenario_name": "IMPORT-001-S01 Retrouver les favoris de la vente choisie sans lancer d'étude",
+              "step_index": 4,
+              "keyword": "And"
             }
           ]
         }
       ],
       "reason": "step texts share many non-placeholder tokens and may describe the same concept",
       "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.533
+      "score": 0.5
     },
     {
       "kind": "possible-synonym",
       "confidence": "medium",
       "members": [
         {
-          "text": "l'application présente les lots 1002 et 1003 rattachés à la vente A",
+          "text": "l'analyse proposée couvre les lots 1002 et 1003 de la vente A",
           "locations": [
             {
               "section": "scenario",
-              "scenario_index": 0,
-              "scenario_name": "IMPORT-001-S01 Retrouver les favoris de la vente choisie sans lancer d'étude",
+              "scenario_index": 2,
+              "scenario_name": "IMPORT-001-S03 Importer aussi les favoris des pages suivantes",
               "step_index": 3,
               "keyword": "Then"
             }
@@ -237,39 +291,6 @@
       "reason": "step texts share many non-placeholder tokens and may describe the same concept",
       "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
       "score": 0.5
-    },
-    {
-      "kind": "possible-synonym",
-      "confidence": "medium",
-      "members": [
-        {
-          "text": "elle peut voir les favoris importés 1002 et 1003 de la vente A",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 4,
-              "scenario_name": "IMPORT-001-S05 Consulter les favoris importés sur l'application Vercel",
-              "step_index": 2,
-              "keyword": "Then"
-            }
-          ]
-        },
-        {
-          "text": "les lots 1002 et 1003 de la vente A ont été importés dans l'application Vercel",
-          "locations": [
-            {
-              "section": "scenario",
-              "scenario_index": 4,
-              "scenario_name": "IMPORT-001-S05 Consulter les favoris importés sur l'application Vercel",
-              "step_index": 0,
-              "keyword": "Given"
-            }
-          ]
-        }
-      ],
-      "reason": "step texts share many non-placeholder tokens and may describe the same concept",
-      "suggested_action": "Review manually before editing; normalize the Gherkin only when the different wording is accidental drift.",
-      "score": 0.471
     }
   ]
 }

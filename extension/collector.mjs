@@ -1,5 +1,21 @@
 // Serialized into the active Interencheres tab by chrome.scripting.executeScript.
 // Keep it self-contained: imported helpers do not exist in the page context.
+export async function inspectCreditSale(saleUrl){
+ if(document.location.origin!=='https://www.interencheres.com'||document.location.pathname!=='/compte/favoris/')return null;
+ let url;
+ try{url=new URL(saleUrl)}catch{return null}
+ if(url.origin!==document.location.origin||!/^\/[a-z0-9-]+\/[a-z0-9-]+-\d+\/$/.test(url.pathname)||url.search||url.hash)return null;
+ try{
+  const response=await fetch(url.href,{credentials:'same-origin',redirect:'error'});
+  if(!response.ok)return null;
+  const page=new DOMParser().parseFromString(await response.text(),'text/html');
+  const events=[...page.querySelectorAll('script[type="application/ld+json"]')].flatMap(node=>{try{const value=JSON.parse(node.textContent);return Array.isArray(value)?value:[value]}catch{return []}});
+  const matches=events.filter(event=>event['@type']==='Event'&&event.organizer?.url==='https://www.interencheres.com/commissaire-priseur/credit-municipal-de-paris-419'&&new URL(event.location?.url??url.href).origin===url.origin&&new URL(event.location?.url??url.href).pathname.replace(/\/?$/,'/')===url.pathname&&/^\d{4}-\d{2}-\d{2}$/.test(event.startDate)&&event.name);
+  if(matches.length!==1)return null;
+  return {url:url.href,organizer:matches[0].organizer.url,date:matches[0].startDate,title:matches[0].name};
+ }catch{return null}
+}
+
 export async function collectFavoritePage(){
  const source='https://www.interencheres.com/compte/favoris/';
  if(document.location.origin!=='https://www.interencheres.com'||document.location.pathname!=='/compte/favoris/')return {ok:false,error:'Ouvrez Mon compte → Favoris sur Interencheres. La liste « Mes favoris et ordres » ne convient pas.'};

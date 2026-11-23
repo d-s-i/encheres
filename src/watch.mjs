@@ -8,7 +8,10 @@ function namePart(match, position) {
 function watchName(title) {
   const name = text(title).replace(/^Lot\s*n[°o.]?\s*\d+\s*/i, '');
   const match = name.match(/^([^,.]+),\s*([^.!?]+?)(?:\.|$)/u);
-  return { brand: namePart(match, 1), model: namePart(match, 2) };
+  if(match)return {brand:namePart(match,1),model:namePart(match,2)};
+  // A catalogue may publish only the maker before the generic words "Montre bracelet".
+  const maker=name.match(/^([\p{Lu}][\p{Lu}'&-]{1,30})(?:\s+Montre\b|$)/u)?.[1];
+  return {brand:maker==='MONTRE'?null:maker??null,model:null};
 }
 
 function watchReference(description) {

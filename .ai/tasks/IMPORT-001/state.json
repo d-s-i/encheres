@@ -1,9 +1,9 @@
 {
   "id": "IMPORT-001",
   "title": "Importer les lots favoris Interencheres d’une vente dans l’application sans lancer d’étude",
-  "status": "implemented_pending_qa",
-  "current_role": null,
-  "current_feature": null,
+  "status": "qa_setup_incomplete",
+  "current_role": "qa",
+  "current_feature": "IMPORT-001-F01",
   "roles": {
     "init-task": "completed",
     "specifier": "completed",
@@ -11,20 +11,25 @@
     "cleaner": "not_run",
     "architect": "not_run",
     "hardener": "not_run",
-    "qa": "not_run"
+    "qa": "in_progress"
   },
   "checks": {
     "gherkin": "passed",
     "crap": "not_run",
     "dry": "reviewed_with_findings",
     "mutation": "not_run",
-    "qa": "not_run"
+    "qa": "setup_incomplete"
   },
   "open_questions": [
-    "La page dédiée aux favoris distingue les favoris des ordres, mais la pagination/charge différée d’un grand compte n’a pas été observée ; vérifier la complétude avant d’annoncer tous les favoris importés."
+    "La page dédiée aux favoris distingue les favoris des ordres, mais la pagination/charge différée d’un grand compte n’a pas été observée ; vérifier la complétude avant d’annoncer tous les favoris importés.",
+    "Le correctif PIAGET a passé QA-IMPORT-001-S13 sur une instance locale isolée ; l'ancienne étude 202 utilisateur reste un instantané erroné et ne doit être recréée qu'après accord explicite.",
+    "Les oracles QA ont été adaptés après accord aux favoris réels Crédit Municipal 201/202 et Cap Enchères 1002/1003. L'extension authentifiée a été ouverte et un réimport idempotent 201/202 vérifié sans étude nouvelle, mais sur l'instance utilisateur. Restent une application QA isolée, le replay traçable ordre seul/pagination et un déploiement Vercel Preview avec stockage isolé."
   ],
   "features": {
     "IMPORT-001-F01": "completed"
   },
-  "updated_at": "2026-11-22T14:25:33Z"
+  "qa_smoke": "qa/smoke-local.md",
+  "qa_preflight_report": "qa/report.md",
+  "qa_scenarios_verified": {"IMPORT-001-S12":"PASS","IMPORT-001-S13":"PASS"},
+  "updated_at": "2026-11-22T20:14:25Z"
 }

@@ -2,7 +2,7 @@
 
 ## Implemented — external QA pending
 
-- [ ] IMPORT-001 — Extension Chromium : choisir une vente depuis les favoris Interencheres et importer ses lots directement dans l’application ; QA navigateur/Vercel et pagination réelle à vérifier.
+- [ ] IMPORT-001 — QA locale isolée S12/S13 PASS (lot 202 PIAGET corrigé, sans Packet) ; QA globale toujours en préparation : extension avec session authentifiée, relecture contrôlée ordre seul/pagination, Preview Vercel isolé. Ancien instantané utilisateur 202 préservé.
 
 ## Validated — APP-001 (mutation deferred)
 
